@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Node.js</title>
+  <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="./"><img src="img/icon.png" alt="Node.js icon" class="nav-icon"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./add">Adicionar usuário</a>
+          </li>
+        </ul>
+        <form class="d-flex" action="./search" method="GET">
+          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
+          <button class="btn secondary-btn" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <div class="container">
+    <div class="text-center">
+      <h2>Tabela de usuários</h2>
+    </div>
+    <br>
+    <form action="./edit-user" method="POST">
+      <input type="hidden" name="id" value="<%= user.id %>">
+      <div class="row">
+        <div class="col-12">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" name="username" id="username" class="form-control" value="<%= user.username %>">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-6">
+          <label for="email" class="form-label">Email</label>
+          <input type="text" name="email" id="email" class="form-control" value="<%= user.email %>">
+        </div>
+        <div class="col-6">
+          <label for="telefone" class="form-label">Telefone</label>
+          <input type="text" name="telefone" id="telefone" class="form-control" value="<%= user.telefone %>">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-6">
+          <label for="cidade" class="form-label">Cidade</label>
+          <input type="text" name="cidade" id="cidade" class="form-control" value="<%= user.cidade %>">
+        </div>
+        <div class="col-6">
+          <label for="estado" class="form-label">Estado</label>
+          <select name="estado" id="estado" class="form-select">
+            <option value="<%= user.estado %>" selected>
+              <%= user.estado %>
+            </option>
+            <option value="AC">Acre</option>
+            <option value="AL">Alagoas</option>
+            <option value="AP">Amapá</option>
+            <option value="AM">Amazonas</option>
+            <option value="BA">Bahia</option>
+            <option value="CE">Ceará</option>
+            <option value="DF">Distrito Federal</option>
+            <option value="ES">Espírito Santo</option>
+            <option value="GO">Goiás</option>
+            <option value="MA">Maranhão</option>
+            <option value="MT">Mato Grosso</option>
+            <option value="MS">Mato Grosso do Sul</option>
+            <option value="MG">Minas Gerais</option>
+            <option value="PA">Pará</option>
+            <option value="PB">Paraíba</option>
+            <option value="PR">Paraná</option>
+            <option value="PE">Pernambuco</option>
+            <option value="PI">Piauí</option>
+            <option value="RJ">Rio de Janeiro</option>
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="RS">Rio Grande do Sul</option>
+            <option value="RO">Rondônia</option>
+            <option value="RR">Roraima</option>
+            <option value="SC">Santa Catarina</option>
+            <option value="SP">São Paulo</option>
+            <option value="SE">Sergipe</option>
+            <option value="TO">Tocantins</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-6">
+          <div class="float-start">
+            <button type="submit" class="btn primary-btn">Atualizar usuário</button>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="float-end">
+            <a href="./" class="btn secondary-btn">Voltar à home</a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>

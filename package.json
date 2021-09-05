@@ -1,0 +1,30 @@
+{
+  "name": "crud_nodejs",
+  "version": "1.0.0",
+  "description": "CRUD made with Node.js, Express, TypeScript, TypeORM, EJS & SQLite.",
+  "main": "index.js",
+  "repository": "",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev src/server.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "migrate": "typeorm migration:create --"
+  },
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^5.0.2",
+    "typeorm": "^0.2.34",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.12",
+    "@types/uuid": "^8.3.0",
+    "ts-node": "^10.2.1",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.3.4"
+  }
+}
