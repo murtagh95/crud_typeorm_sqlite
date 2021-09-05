@@ -1,14 +1,21 @@
 import "reflect-metadata";
 import "express-async-errors";
 import express, { Request, Response, NextFunction } from "express";
+import morgan from "morgan";
 import path from "path";
 import { router } from "./routes";
 import "./database";
 
 const app = express();
+
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(router);
+app.use(morgan('dev'))
+
+// Config
+app.set('view engine', 'ejs');
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
   if (err instanceof Error) {

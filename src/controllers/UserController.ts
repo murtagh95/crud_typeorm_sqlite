@@ -15,12 +15,12 @@ class UserController {
                 city,
                 state
             }).then(() => {
-                response.render("message", {
+                response.render("User/message", {
                     message: "Usuario creado con exito"
                 });
             });
         } catch (err) {
-            response.render("message", {
+            response.render("User/message", {
                 message: `Erro al crear el usuario: ${err.message}`
             });
         }
@@ -34,12 +34,12 @@ class UserController {
 
         try {
             await userService.delete(id).then(() => {
-                response.render("message", {
+                response.render("User/message", {
                     message: "Usuario eliminado con exito"
                 });
             });
         } catch (err) {
-            response.render("message", {
+            response.render("User/message", {
                 message: `Error al eliminar usuario: ${err.message}`
             });
         }
@@ -53,7 +53,7 @@ class UserController {
 
         const user = await userService.getData(id);
 
-        return response.render("edit", {
+        return response.render("User/edit", {
             user: user
         });
     }
@@ -63,7 +63,7 @@ class UserController {
 
         const users = await userService.list();
 
-        return response.render("index", {
+        return response.render("User/index", {
             users: users
         });
     }
@@ -76,12 +76,12 @@ class UserController {
 
         try {
             const users = await userService.search(search);
-            response.render("search", {
+            response.render("User/search", {
                 users: users,
                 search: search
             });
         } catch (err) {
-            response.render("message", {
+            response.render("User/message", {
                 message: `Error al buscar usuario: ${err.message}`
             });
         }
@@ -94,12 +94,12 @@ class UserController {
 
         try {
             await userService.update({ id, username, email, phone, city, state }).then(() => {
-                response.render("message", {
+                response.render("User/message", {
                     message: "Usuario actualizado con exito"
                 });
             });
         } catch (err) {
-            response.render("message", {
+            response.render("User/message", {
                 message: `Error al actualizar usuario: ${err.message}`
             });
         }

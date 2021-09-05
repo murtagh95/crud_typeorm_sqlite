@@ -8,7 +8,7 @@ const userController = new UserController();
 router.get("/", userController.list);
 
 router.get("/add", (request, response) => {
-  response.render("add");
+  response.render("User/add");
 });
 
 router.post("/add-user", userController.create);

@@ -1,0 +1,45 @@
+
+<% users.forEach(function(user) { %>
+    <tr>
+        <td>
+            <%= user.username %>
+        </td>
+        <td>
+            <%= user.email %>
+        </td>
+        <td>
+            <%= user.phone %>
+        </td>
+        <td>
+            <%= user.city %>
+        </td>
+        <td>
+            <%= user.state %>
+        </td>
+        <td>
+            <%= user.created_at.toLocaleDateString() %>
+            <%= user.created_at.toLocaleTimeString() %>
+        </td>
+        <td>
+            <%= user.updated_at.toLocaleDateString() %>
+            <%= user.updated_at.toLocaleTimeString() %>
+        </td>
+        <td>
+            <div class="row">
+                <div class="row">
+                    <form action="./edit" method="GET">
+                        <input type="hidden" name="id" value="<%= user.id %>">
+                        <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
+                    </form>
+                </div>
+                <div class="row"></div>
+                <div class="row">
+                    <form action="./delete-user" method="POST">
+                        <input type="hidden" name="id" value="<%= user.id %>">
+                        <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
+                    </form>
+                </div>
+            </div>
+        </td>
+    </tr>
+<% }) %>

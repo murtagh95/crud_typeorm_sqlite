@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <%- include('../head'); %>
+</head>
+
+<body>
+
+<header>
+    <%- include('../navegation'); %>
+</header>
+<br>
+<div class="container">
+    <div class="text-center">
+        <h2>Tabla de Usuarios</h2>
+    </div>
+    <br>
+    <form action="./add-user" method="POST">
+        <div class="row">
+            <div class="col-12">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" id="username" class="form-control">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" name="email" id="email" class="form-control">
+            </div>
+            <div class="col-6">
+                <label for="telefone" class="form-label">Teléfono</label>
+                <input type="text" name="phone" id="telefone" class="form-control">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <label for="cidade" class="form-label">Ciudad</label>
+                <input type="text" name="city" id="cidade" class="form-control">
+            </div>
+            <div class="col-6">
+                <label for="estado" class="form-label">Provincia</label>
+                <select name="state" id="estado" class="form-select">
+                    <option value="" selected disabled>Seleccione su provincia</option>
+                    <!-- Script by hscripts.com -->
+                    <option value="Buenos Aires">Buenos Aires</option>
+                    <option value="Buenos Aires Capital">Buenos Aires Capital</option>
+                    <option value="Catamarca">Catamarca</option>
+                    <option value="Chaco">Chaco</option>
+                    <option value="Chubut">Chubut</option>
+                    <option value="Cordoba">Cordoba</option>
+                    <option value="Corrientes">Corrientes</option>
+                    <option value="Entre Rios">Entre Rios</option>
+                    <option value="Formosa">Formosa</option>
+                    <option value="Jujuy">Jujuy</option>
+                    <option value="La Pampa">La Pampa</option>
+                    <option value="La Rioja">La Rioja</option>
+                    <option value="Mendoza">Mendoza</option>
+                    <option value="Misiones">Misiones</option>
+                    <option value="Neuquen">Neuquen</option>
+                    <option value="Rio Negro">Rio Negro</option>
+                    <option value="Salta">Salta</option>
+                    <option value="San Juan">San Juan</option>
+                    <option value="San Luis">San Luis</option>
+                    <option value="Santa Cruz">Santa Cruz</option>
+                    <option value="Santa Fe">Santa Fe</option>
+                    <option value="Santiago del Estero">Santiago del Estero</option>
+                    <option value="Tierra del Fuego">Tierra del Fuego</option>
+                    <option value="Tucuman">Tucuman</option>
+                    <!-- Script by hscripts.com -->
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <div class="float-start">
+                    <button type="submit" class="btn primary-btn">Agregar Usuario</button>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="float-end">
+                    <a href=".." class="btn secondary-btn">Volver al home</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+<script src="js/script.js"></script>
+</body>
+
+</html>

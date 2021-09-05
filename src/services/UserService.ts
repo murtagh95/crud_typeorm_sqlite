@@ -75,7 +75,7 @@ class UserService {
 
     async search(search: string){
         if (!search) {
-            throw new Error("Por favor preencha o campo de busca");
+            throw new Error("Por favor complete el campo de búsqueda");
         }
 
         const usersRepository = getCustomRepository(UsersRepository);
@@ -84,9 +84,9 @@ class UserService {
             .createQueryBuilder()
             .where("username like :search", { search: `%${search}%` })
             .orWhere("email like :search", { search: `%${search}%` })
-            .orWhere("telefone like :search", { search: `%${search}%` })
-            .orWhere("cidade like :search", { search: `%${search}%` })
-            .orWhere("estado like :search", { search: `%${search}%` })
+            .orWhere("phone like :search", { search: `%${search}%` })
+            .orWhere("city like :search", { search: `%${search}%` })
+            .orWhere("state like :search", { search: `%${search}%` })
             .getMany();
 
         return user;
