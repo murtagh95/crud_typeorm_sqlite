@@ -11,6 +11,10 @@ router.get("/add", (request, response) => {
   response.render("User/add");
 });
 
+router.get("/home", (request, response) => {
+  response.render("base/home");
+});
+
 router.post("/add-user", userController.create);
 
 router.get("/search", userController.search);
