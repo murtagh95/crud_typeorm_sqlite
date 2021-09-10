@@ -2,19 +2,28 @@
 <html lang="pt-BR">
 
 <head>
-  <%- include('../head'); %>
+  <%- include('../base/head'); %>
 </head>
 
 <body>
 
 <header>
-  <%- include('../navegation'); %>
+  <%- include('../base/navegation'); %>
 </header>
   <br>
   <div class="row container centered" width="100vw">
-    <div class="text-center">
-      <h2>Tabla de usuarios</h2>
-    </div>
+
+    <% if(search){ %>
+      <div class="text-center">
+        <h2>Busca por "<%= search %>"</h2>
+      </div>
+    <% } else{ %>  
+      <div class="text-center">
+        <h2>Tabla de usuarios</h2>
+      </div>
+    <% } %>
+
+    
     <br>
     <br>
     <br>
@@ -30,7 +39,7 @@
         <th scope="col">Acciones</th>
       </thead>
       <tbody>
-        <%- include('../table', {variant:'users'}); %>
+        <%- include('../base/table', {variant:'users'}); %>
       </tbody>
     </table>
     <br>

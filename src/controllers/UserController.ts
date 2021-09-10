@@ -64,7 +64,8 @@ class UserController {
         const users = await userService.list();
 
         return response.render("User/index", {
-            users: users
+            users: users,
+            search: false
         });
     }
 
@@ -76,7 +77,7 @@ class UserController {
 
         try {
             const users = await userService.search(search);
-            response.render("User/search", {
+            response.render("User/index", {
                 users: users,
                 search: search
             });
