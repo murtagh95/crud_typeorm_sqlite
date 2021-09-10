@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "typeorm": "ts-node-dev --transpile-only ./node_modules/typeorm/cli.js -f ./ormconfig.json",
     "migrate": "typeorm migration:create --"
   },
   "dependencies": {
