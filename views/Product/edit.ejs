@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <%- include('../base/head'); %>
+</head>
+
+<body>
+
+<header>
+    <%- include('../base/navegation'); %>
+</header>
+<br>
+<div class="container">
+    <div class="text-center">
+        <h2>Info del usuario</h2>
+    </div>
+    <br>
+    <form action="./edit-product" method="POST">
+        <input type="hidden" name="id" value="<%= product.id %>">
+        <div class="row">
+            <div class="col-12">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" name="name" id="name" class="form-control" value="<%= product.name %>">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <label for="price" class="form-label">Precio</label>
+                <input type="number" name="price" id="price" class="form-control" value="<%= product.price %>">
+            </div>
+            <div class="col-6">
+                <label for="type" class="form-label">Tipo</label>
+                <input type="text" name="type" id="type" class="form-control" value="<%= product.type %>">
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <div class="float-start">
+                    <button type="submit" class="btn primary-btn">Actualizar Producto</button>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="float-end">
+                    <a href=".." class="btn secondary-btn">Volver al home</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+<script src="js/script.js"></script>
+</body>
+
+</html>

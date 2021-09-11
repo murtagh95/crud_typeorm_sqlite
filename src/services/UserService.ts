@@ -18,7 +18,7 @@ class UserService {
 
     async create({ username, email, phone, city, state }: IUser) {
         if (!username || !email || !phone || !city || !state) {
-            throw new Error("Por favor preencha todos os campos");
+            throw new Error("Por favor enviar todos los campos");
         }
 
         const usersRepository = getCustomRepository(UsersRepository);
@@ -26,13 +26,13 @@ class UserService {
         const usernameAlreadyExists = await usersRepository.findOne({ username });
 
         if (usernameAlreadyExists) {
-            throw new Error("Username já está cadastrado");
+            throw new Error("Usuario ya existe");
         }
 
         const emailAlreadyExists = await usersRepository.findOne({ email });
 
         if (emailAlreadyExists) {
-            throw new Error("Email já está cadastrado");
+            throw new Error("Email ya existe");
         }
 
         const user = usersRepository.create({ username, email, phone, city, state });
