@@ -1,4 +1,4 @@
-import { Column, JoinTable, Entity, PrimaryColumn, ManyToMany } from "typeorm";
+import { Column, Entity, PrimaryColumn, OneToMany } from "typeorm";
 import { Product } from "./Product"
 import { v4 as uuid } from "uuid";
 
@@ -11,10 +11,7 @@ class Category {
   @Column()
   name: string;
 
-  @ManyToMany(type => Product, product => product.category, {
-    cascade: true
-  })
-  @JoinTable()
+  @OneToMany(() => Product, product => product.category)
   product: Product[];
 
   constructor() {

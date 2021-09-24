@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ProductService } from "../services/ProductService";
+import { CategoryService } from "../services/CategoryService";
 
 class ProductController {
 
@@ -45,13 +46,16 @@ class ProductController {
 
     async get(request: Request, response: Response) {
         const productService = new ProductService();
+        const categoryService = new CategoryService();
         let { id } = request.query;
         id = id.toString();
 
         const product = await productService.getData(id);
-
+        const category = await categoryService.list();
+        
         return response.render("Product/edit", {
-            product: product
+            product: product,
+            category: category
         });
     }
 

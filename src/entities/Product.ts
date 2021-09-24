@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryColumn, ManyToMany } from "typeorm";
+import { Column, Entity, PrimaryColumn, ManyToOne } from "typeorm";
 import { Category } from "./Category"
 import { v4 as uuid } from "uuid";
 
@@ -20,7 +20,7 @@ class Product {
   })
   type: string;
 
-  @ManyToMany(type => Category, category => category.product)
+  @ManyToOne(() => Category, category => category.product)
   category: Category[];
 
   constructor() {

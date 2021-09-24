@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
     "typeorm": "ts-node-dev --transpile-only ./node_modules/typeorm/cli.js -f ./ormconfig.json",
-    "migrate": "typeorm migration:create --"
+    "migrate": "typeorm migration:create --",
+    "migrateAutomatic": "typeorm migration:create -- --name"
   },
   "dependencies": {
     "ejs": "^3.1.6",
