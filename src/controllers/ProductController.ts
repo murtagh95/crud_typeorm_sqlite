@@ -89,11 +89,12 @@ class ProductController {
 
     async update(request: Request, response: Response) {
         const productService = new ProductService();
-        const { id, name, price, type } = request.body;
-
+        const { id, name, price, type, category } = request.body;
+        
+        console.error(category)
 
         try {
-            await productService.update({ id, name, price, type }).then(() => {
+            await productService.update({ id, name, price, type, category }).then(() => {
                 response.render("Product/message", {
                     message: "Producto actualizado con exito"
                 });
@@ -109,4 +110,3 @@ class ProductController {
 }
 
 export { ProductController };
-

@@ -34,7 +34,7 @@
                 <label for="category" class="form-label">Provincia</label>
                 <select name="category" id="category" class="form-select">
                     <% category.forEach(function(category) { %>
-                        <option value="<%= category.name %>" selected>
+                        <option value="<%= category.id %>" selected>
                             <%= category.name %>
                         </option>
                       <% }) %>

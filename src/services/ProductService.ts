@@ -4,7 +4,6 @@ import { getCustomRepository } from "typeorm";
 import { ProductRepository } from "../repositories/ProductRepository";
 
 // Entities
-import { Category } from "../entities/Category"
 import { Product } from "../entities/Product"
 
 interface IProduct {
@@ -12,7 +11,7 @@ interface IProduct {
     name: string;
     price: number;
     type: string;
-    category?: Category;
+    category?: string;
 }
 
 class ProductService {
@@ -20,13 +19,13 @@ class ProductService {
     constructor() {
     }
 
-    async create({ name, price, type }: IProduct) {
+    async create({ name, price, type, category }: IProduct) {
         const productRepository = getCustomRepository(ProductRepository)
 
         if (!name || !price || !type) {
             throw new Error("Por favor enviar todos los campos");
         }
-        const product = productRepository.create({ name, price, type });
+        const product = productRepository.create({ name, price, type, category });
 
         await productRepository.save(product);
 
@@ -81,13 +80,13 @@ class ProductService {
 
     }
 
-    async update({id, name, price, type }: IProduct) {
+    async update({id, name, price, type, category }: IProduct) {
         const productRepository = getCustomRepository(ProductRepository)
 
         const product = await productRepository
             .createQueryBuilder()
             .update(Product)
-            .set({ name, price , type  })
+            .set({ name, price , type, category })
             .where("id = :id", { id })
             .execute();
 
