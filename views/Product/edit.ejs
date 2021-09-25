@@ -33,10 +33,20 @@
             <div class="col-6">
                 <label for="category" class="form-label">Categoria</label>
                 <select name="category" id="category" class="form-select">
-                    <% categories.forEach(function(category) { %>
-                        <option value="<%= category.id %>" selected>
-                            <%= category.name %>
+                    <% if( register.category ){ %>
+                        <option value="<%= register.category.id %>" selected>
+                            <%= register.category.name %>
                         </option>
+                    <% } else{ %>  
+                        <option value="" selected disabled>Seleccione categoria</option>
+                    <% } %>
+                    
+                    <% categories.forEach(function(category) { %>
+                        <% if( register.category.id !== category.id ){ %>
+                            <option value="<%= category.id %>">
+                                <%= category.name %>
+                            </option>>
+                        <% } %>                     
                       <% }) %>
                 </select>
             </div>

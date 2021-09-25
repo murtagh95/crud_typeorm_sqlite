@@ -21,11 +21,10 @@ class ProductController extends GenericController {
     async create(request: Request, response: Response) {
         const data = this.get_data_request(request.body, this.data_create)
 
-        console.log(data)
         const category = await this.categoryService.getData(
             data["category"].toString()
         );
-        console.log(category)
+        data["category"] = category
 
         try {
             await this.service.create( data ).then(() => {
@@ -54,9 +53,6 @@ class ProductController extends GenericController {
 
         const product = await this.service.getData(id);
         const category = await this.categoryService.list();
-
-        console.log(product)
-        console.log(category)
         
         return response.render("Product/edit", {
             register: product,
@@ -66,6 +62,11 @@ class ProductController extends GenericController {
 
     async update(request: Request, response: Response) {
         const data = this.get_data_request(request.body, this.data_update)
+        
+        const category = await this.categoryService.getData(
+            data["category"].toString()
+        );
+        data["category"] = category
 
         try {
             await this.service.update( data ).then(() => {

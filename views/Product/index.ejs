@@ -48,7 +48,12 @@
                 <%= register.type %>
             </td>
             <td>
-                <%= register.category %>
+              <% if( register.category ){ %>
+                <%= register.category.name %>
+              <% } else{ %>  
+                Sin Categoria
+              <% } %>
+                
             </td>
             <td>
                 <div class="row">

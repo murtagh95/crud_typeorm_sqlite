@@ -6,13 +6,14 @@ import { ProductRepository } from "../repositories/ProductRepository";
 // Entities
 import { Product } from "../entities/Product"
 import { IService } from "./InterfaceService";
+import { Category } from "../entities/Category";
 
 interface IProduct {
     id?: string;
     name: string;
     price: number;
     type: string;
-    category?: string;
+    category?: Category;
 }
 
 class ProductService implements IService {
@@ -23,13 +24,15 @@ class ProductService implements IService {
     async create({ name, price, type, category }: IProduct) {
         const productRepository = getCustomRepository(ProductRepository)
 
-        if (!name || !price || !type) {
+        if (!name || !price || !type || !category) {
             throw new Error("Por favor enviar todos los campos");
         }
         const product = productRepository.create({ name, price, type });
+        product.category = category
 
         await productRepository.save(product);
 
+        console.log(product)
         return product;
 
     }
@@ -51,17 +54,17 @@ class ProductService implements IService {
     async getData(id: string) {
         const productRepository = getCustomRepository(ProductRepository)
 
-        const product = await productRepository.findOne(id);
+        const product = await productRepository.findOne(id, { relations: ["category"] });
 
         return product;
     }
 
     async list() {
         const productRepository = getCustomRepository(ProductRepository)
+        
+        const products = await productRepository.find({ relations: ["category"] });
 
-        const product = await productRepository.find();
-
-        return product;
+        return products;
     }
 
     async search(search: string){

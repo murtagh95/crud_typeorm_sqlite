@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryColumn, ManyToOne } from "typeorm";
+import { Column, Entity, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm";
 import { Category } from "./Category"
 import { v4 as uuid } from "uuid";
 
@@ -21,7 +21,8 @@ class Product {
   type: string;
 
   @ManyToOne(() => Category, category => category.product)
-  category: Category[];
+  @JoinColumn({name: "category_fk_id"})
+  category: Category;
 
   constructor() {
     if (!this.id) {

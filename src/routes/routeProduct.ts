@@ -10,12 +10,12 @@ const routerProduct = Router();
 
 const productController = FactoryController.generateController(
   ["name", "price", "type", "category" ],
-  ["id", "name", "price", "type"],
+  ["id", "name", "price", "type", "category"],
   "Product",
   new ProductService()
 );
 
-// Product
+// Routes
 routerProduct.get("/product", (request, response) => {
   productController.list(request, response)
 });
