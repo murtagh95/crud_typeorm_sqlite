@@ -7,8 +7,8 @@ import { CategoryService } from "../services/CategoryService";
 const routerCategory = Router();
 
 const categoryController = FactoryController.generateController(
-  ["username", "email", "phone", "city", "state" ],
-  ["id", "username", "email", "phone", "city", "state"],
+  ["name"],
+  ["id", "name"],
   "Category",
   new CategoryService()
 );
