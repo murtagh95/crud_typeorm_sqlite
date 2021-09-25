@@ -5,13 +5,14 @@ import { CategoryRepository } from "../repositories/CategoryRepository";
 
 // Entities
 import { Category } from "../entities/Category"
+import { IService } from "./InterfaceService";
 
 interface ICategory {
     id?: string;
     name: string;
 }
 
-class CategoryService {
+class CategoryService implements IService {
 
     constructor() {
     }

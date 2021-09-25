@@ -1,6 +1,7 @@
 import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../repositories/UsersRepository";
 import {User} from "../entities/User";
+import { IService } from "./InterfaceService";
 
 interface IUser {
     id?: string;
@@ -11,7 +12,7 @@ interface IUser {
     state: string;
 }
 
-class UserService {
+class UserService implements IService {
 
     constructor() {
     }

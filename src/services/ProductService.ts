@@ -5,6 +5,7 @@ import { ProductRepository } from "../repositories/ProductRepository";
 
 // Entities
 import { Product } from "../entities/Product"
+import { IService } from "./InterfaceService";
 
 interface IProduct {
     id?: string;
@@ -14,7 +15,7 @@ interface IProduct {
     category?: string;
 }
 
-class ProductService {
+class ProductService implements IService {
 
     constructor() {
     }
@@ -25,7 +26,7 @@ class ProductService {
         if (!name || !price || !type) {
             throw new Error("Por favor enviar todos los campos");
         }
-        const product = productRepository.create({ name, price, type, category });
+        const product = productRepository.create({ name, price, type });
 
         await productRepository.save(product);
 
@@ -80,13 +81,13 @@ class ProductService {
 
     }
 
-    async update({id, name, price, type, category }: IProduct) {
+    async update({id, name, price, type }: IProduct) {
         const productRepository = getCustomRepository(ProductRepository)
 
         const product = await productRepository
             .createQueryBuilder()
             .update(Product)
-            .set({ name, price , type, category })
+            .set({ name, price , type })
             .where("id = :id", { id })
             .execute();
 

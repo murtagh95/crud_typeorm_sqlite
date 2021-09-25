@@ -1,20 +1,34 @@
 import { Request, Response } from "express";
-import { ProductService } from "../services/ProductService";
+import { GenericController } from "./GenericController";
+
+// Service
+import { IService } from "../services/InterfaceService";
 import { CategoryService } from "../services/CategoryService";
 
-class ProductController {
+
+class ProductController extends GenericController {
+    private categoryService = new CategoryService();
+    constructor(
+        protected data_create: string[],
+        protected data_update: string[],
+        protected type_controller: string,
+        protected service: IService
+    ){
+        super(data_create, data_update, type_controller, service)
+    }
+
 
     async create(request: Request, response: Response) {
-        const productService = new ProductService();
+        const data = this.get_data_request(request.body, this.data_create)
 
-        const { name, price, type } = request.body;
+        console.log(data)
+        const category = await this.categoryService.getData(
+            data["category"].toString()
+        );
+        console.log(category)
 
         try {
-            await productService.create({
-                name,
-                price,
-                type
-            }).then(() => {
+            await this.service.create( data ).then(() => {
                 response.render("Product/message", {
                     message: "Producto creado con exito"
                 });
@@ -27,74 +41,34 @@ class ProductController {
 
     }
 
-    async delete(request: Request, response: Response) {
-        const productService = new ProductService();
-        const { id } = request.body;
-
-        try {
-            await productService.delete(id).then(() => {
-                response.render("Product/message", {
-                    message: "Producto eliminado con exito"
-                });
-            });
-        } catch (err) {
-            response.render("Product/message", {
-                message: `Error al eliminar producto: ${err.message}`
-            });
-        }
+    async getForCreate(request: Request, response: Response) {
+        const category = await this.categoryService.list();
+        return response.render("Product/add", {
+            categories: category
+        });
     }
 
     async get(request: Request, response: Response) {
-        const productService = new ProductService();
-        const categoryService = new CategoryService();
         let { id } = request.query;
         id = id.toString();
 
-        const product = await productService.getData(id);
-        const category = await categoryService.list();
+        const product = await this.service.getData(id);
+        const category = await this.categoryService.list();
+
+        console.log(product)
+        console.log(category)
         
         return response.render("Product/edit", {
-            product: product,
-            category: category
+            register: product,
+            categories: category
         });
-    }
-
-    async list(request: Request, response: Response) {
-        const productService = new ProductService();
-        const product = await productService.list();
-
-        return response.render("Product/index", {
-            product: product,
-            search: false
-        });
-    }
-
-    async search(request: Request, response: Response) {
-        const productService = new ProductService();
-        let { search } = request.query;
-        search = search.toString();
-
-        try {
-            const product = await productService.search(search);
-            response.render("Product/index", {
-                product: product,
-                search: search
-            });
-        } catch (err) {
-            response.render("Product/message", {
-                message: `Error al buscar producto: ${err.message}`
-            });
-        }
     }
 
     async update(request: Request, response: Response) {
-        const productService = new ProductService();
-        const { id, name, price, type, category } = request.body;
-        
-        console.error(category)
+        const data = this.get_data_request(request.body, this.data_update)
 
         try {
-            await productService.update({ id, name, price, type, category }).then(() => {
+            await this.service.update( data ).then(() => {
                 response.render("Product/message", {
                     message: "Producto actualizado con exito"
                 });

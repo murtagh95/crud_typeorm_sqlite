@@ -32,36 +32,36 @@
         <th scope="col">Nombre</th>
         <th scope="col">Precio</th>
         <th scope="col">Tipo</th>
-        <th scope="col">Producto</th>
+        <th scope="col">Categoria</th>
       </thead>
       <tbody>
         
-      <% product.forEach(function(product) { %>
+      <% registers.forEach(function(register) { %>
         <tr>
             <td>
-                <%= product.name %>
+                <%= register.name %>
             </td>
             <td>
-                <%= product.price %>
+                <%= register.price %>
             </td>
             <td>
-                <%= product.type %>
+                <%= register.type %>
             </td>
             <td>
-                <%= product.category %>
+                <%= register.category %>
             </td>
             <td>
                 <div class="row">
                     <div class="row">
                         <form action="./edit-product" method="GET">
-                            <input type="hidden" name="id" value="<%= product.id %>">
+                            <input type="hidden" name="id" value="<%= register.id %>">
                             <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
                         </form>
                     </div>
                     <div class="row"></div>
                     <div class="row">
                         <form action="./delete-product" method="POST">
-                            <input type="hidden" name="id" value="<%= product.id %>">
+                            <input type="hidden" name="id" value="<%= register.id %>">
                             <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
                         </form>
                     </div>

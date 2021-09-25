@@ -3,15 +3,21 @@ import "express-async-errors";
 import express, { Request, Response, NextFunction } from "express";
 import morgan from "morgan";
 import path from "path";
-import { router } from "./routes";
 import "./database";
+
+// Routers
+import { routerCategory } from "./routes/routeCategory";
+import { routerProduct } from "./routes/routeProduct";
+import { routerUser } from "./routes/routeUser";
 
 const app = express();
 
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(router);
+app.use(routerCategory);
+app.use(routerUser);
+app.use(routerProduct);
 app.use(morgan('dev'))
 
 // Config

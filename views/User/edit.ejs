@@ -17,35 +17,35 @@
     </div>
     <br>
     <form action="./edit-user" method="POST">
-        <input type="hidden" name="id" value="<%= user.id %>">
+        <input type="hidden" name="id" value="<%= register.id %>">
         <div class="row">
             <div class="col-12">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" name="username" id="username" class="form-control" value="<%= user.username %>">
+                <input type="text" name="username" id="username" class="form-control" value="<%= register.username %>">
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-6">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" name="email" id="email" class="form-control" value="<%= user.email %>">
+                <input type="text" name="email" id="email" class="form-control" value="<%= register.email %>">
             </div>
             <div class="col-6">
                 <label for="telefone" class="form-label">Teléfono</label>
-                <input type="text" name="phone" id="telefone" class="form-control" value="<%= user.phone %>">
+                <input type="text" name="phone" id="telefone" class="form-control" value="<%= register.phone %>">
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-6">
                 <label for="cidade" class="form-label">Ciudad</label>
-                <input type="text" name="city" id="cidade" class="form-control" value="<%= user.city %>">
+                <input type="text" name="city" id="cidade" class="form-control" value="<%= register.city %>">
             </div>
             <div class="col-6">
                 <label for="estado" class="form-label">Provincia</label>
                 <select name="state" id="estado" class="form-select">
-                    <option value="<%= user.state %>" selected>
-                        <%= user.state %>
+                    <option value="<%= register.state %>" selected>
+                        <%= register.state %>
                     </option>
                     <option value="Buenos Aires">Buenos Aires</option>
                     <option value="Buenos Aires Capital">Buenos Aires Capital</option>

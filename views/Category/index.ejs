@@ -33,23 +33,23 @@
       </thead>
       <tbody>
         
-      <% category.forEach(function(category) { %>
+      <% registers.forEach(function(register) { %>
         <tr>
             <td>
-                <%= category.name %>
+                <%= register.name %>
             </td>
             <td>
                 <div class="row">
                     <div class="row">
                         <form action="./edit-category" method="GET">
-                            <input type="hidden" name="id" value="<%= category.id %>">
+                            <input type="hidden" name="id" value="<%= register.id %>">
                             <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
                         </form>
                     </div>
                     <div class="row"></div>
                     <div class="row">
                         <form action="./delete-category" method="POST">
-                            <input type="hidden" name="id" value="<%= category.id %>">
+                            <input type="hidden" name="id" value="<%= register.id %>">
                             <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
                         </form>
                     </div>
