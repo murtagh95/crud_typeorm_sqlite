@@ -70,8 +70,7 @@ class CategoryService implements IService {
         const category = await categoryRepository
             .createQueryBuilder()
             .where("name like :search", { search: `%${search}%` })
-            .orWhere("price like :search", { search: `%${search}%` })
-            .orWhere("type like :search", { search: `%${search}%` })
+            .orWhere("id like :search", { search: `%${search}%` })
             .getMany();
 
         return category;

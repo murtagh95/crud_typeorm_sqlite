@@ -68,7 +68,7 @@ class GenericController implements IController {
 
     async list(request: Request, response: Response) {
         const data = await this.service.list();
-        
+                
         return response.render(this.type_controller+"/index", {
             registers: data,
             search: false
@@ -79,14 +79,15 @@ class GenericController implements IController {
         let { search } = request.query;
         search = search.toString();
 
+
         try {
-            const users = await this.service.search(search);
-            response.render(this.type_controller+"/index", {
-                registers: users,
+            const data = await this.service.search(search);
+            response.render(this.type_controller + "/index", {
+                registers: data,
                 search: search
             });
         } catch (err) {
-            response.render(this.type_controller+"/message", {
+            response.render(this.type_controller + "/message", {
                 message: `Error al buscar registro: ${err.message}`
             });
         }

@@ -33,7 +33,7 @@ routerUser.post("/add-user",(request, response) => {
   userController.create(request, response)
 });
 
-routerUser.get("/search", (request, response) => {
+routerUser.get("/search-user", (request, response) => {
   userController.search(request, response)
 });
 routerUser.get("/edit", (request, response) => {
