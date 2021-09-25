@@ -1,12 +1,9 @@
 import { Column, Entity, PrimaryColumn, OneToMany } from "typeorm";
-import { Product } from "./Product"
-import { v4 as uuid } from "uuid";
+import { Product } from "./Product";
+import { BaseEntity } from "./baseEntity";
 
 @Entity("category")
-class Category {
-
-  @PrimaryColumn()
-  id: string;
+class Category  extends BaseEntity {
 
   @Column()
   name: string;
@@ -15,9 +12,7 @@ class Category {
   product: Product[];
 
   constructor() {
-    if (!this.id) {
-      this.id = uuid();
-    }
+    super()
   }
 
 }

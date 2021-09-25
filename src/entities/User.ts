@@ -1,13 +1,12 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
-import { v4 as uuid } from "uuid";
-import { IEntities } from "./InterfaceEntities";
+
+import { BaseEntity } from "./baseEntity";
 
 
 @Entity("users")
-class User implements IEntities {
+class User extends BaseEntity {
 
-  @PrimaryColumn()
-  id: string;
+
 
   @Column()
   username: string;
@@ -24,16 +23,8 @@ class User implements IEntities {
   @Column()
   state: string;
 
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
-
   constructor() {
-    if (!this.id) {
-      this.id = uuid();
-    }
+    super()
   }
 
 }

@@ -1,12 +1,9 @@
 import { Column, Entity, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm";
-import { Category } from "./Category"
-import { v4 as uuid } from "uuid";
+import { Category } from "./Category";
+import { BaseEntity } from "./baseEntity";
 
 @Entity("product")
-class Product {
-
-  @PrimaryColumn()
-  id: string;
+class Product  extends BaseEntity{
 
   @Column()
   name: string;
@@ -25,9 +22,7 @@ class Product {
   category: Category;
 
   constructor() {
-    if (!this.id) {
-      this.id = uuid();
-    }
+    super()
   }
 
 }

@@ -21,10 +21,16 @@ class ProductController extends GenericController {
     async create(request: Request, response: Response) {
         const data = this.get_data_request(request.body, this.data_create)
 
-        const category = await this.categoryService.getData(
-            data["category"].toString()
-        );
-        data["category"] = category
+        if(!!data["category"]){
+            const category = await this.categoryService.getData(
+                data["category"].toString()
+            );
+            data["category"] = category  
+        }
+        else{
+            data["category"] = null
+        }
+
 
         try {
             await this.service.create( data ).then(() => {
