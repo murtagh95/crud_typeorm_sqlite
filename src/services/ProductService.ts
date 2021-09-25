@@ -18,9 +18,6 @@ interface IProduct {
 
 class ProductService implements IService {
 
-    constructor() {
-    }
-
     async create({ name, price, type, category }: IProduct) {
         const productRepository = getCustomRepository(ProductRepository)
 
@@ -84,13 +81,13 @@ class ProductService implements IService {
 
     }
 
-    async update({id, name, price, type }: IProduct) {
+    async update({id, name, price, type, category }: IProduct) {
         const productRepository = getCustomRepository(ProductRepository)
 
         const product = await productRepository
             .createQueryBuilder()
             .update(Product)
-            .set({ name, price , type })
+            .set({ name, price , type, category })
             .where("id = :id", { id })
             .execute();
 
