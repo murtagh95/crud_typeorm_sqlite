@@ -11,88 +11,91 @@
     <%- include('../base/navegation', {variant:'-product'}); %>
   </header>
   <br>
-  <div class="row container centered" width="100vw">
+  <section class="container mt-5">
+    <div class="row container" width="100vw">
 
-    <% if(search){ %>
-      <div class="text-center">
-        <h2>Busca por "<%= search %>"</h2>
-      </div>
-      <% } else{ %>
+      <% if(search){ %>
         <div class="text-center">
-          <h2>Tabla de Productos</h2>
+          <h2>Busca por "<%= search %>"</h2>
         </div>
-        <% } %>
-
-
-          <br>
-          <br>
-          <br>
-          <table class="table table-hover">
-            <thead>
-              <th scope="col">Nombre</th>
-              <th scope="col">Precio</th>
-              <th scope="col">Tipo</th>
-              <th scope="col">Categoria</th>
-              <th scope="col">Creado</th>
-              <th scope="col">Actualizado</th>
-              <th scope="col">Acciones</th>
-            </thead>
-            <tbody>
-
-              <% registers.forEach(function(register) { %>
-                <tr>
-                  <td>
-                    <%= register.name %>
-                  </td>
-                  <td>
-                    <%= register.price %>
-                  </td>
-                  <td>
-                    <%= register.type %>
-                  </td>
-                  <td>
-                    <% if( register.category ){ %>
-                      <%= register.category.name %>
-                    <% } else{ %>
-                      Sin Categoria
-                    <% } %>
-
-                  </td>
-                  <td>
-                    <%= register.created_at.toLocaleDateString() %>
-                    <%= register.created_at.toLocaleTimeString() %>
-                  </td>
-                  <td>
-                    <%= register.updated_at.toLocaleDateString() %>
-                    <%= register.updated_at.toLocaleTimeString() %>
-                  </td>
-                  <td>
-                    <div class="row">
-                      <div class="row">
-                        <form action="./edit-product" method="GET">
-                          <input type="hidden" name="id" value="<%= register.id %>">
-                          <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
-                        </form>
-                      </div>
-                      <div class="row"></div>
-                      <div class="row">
-                        <form action="./delete-product" method="POST">
-                          <input type="hidden" name="id" value="<%= register.id %>">
-                          <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
-                        </form>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <% }) %>
-            </tbody>
-          </table>
-          <br>
-          <br>
-          <div class="float-start">
-            <a href="./add-product" class="btn primary-btn">Adicionar Producto</a>
+        <% } else{ %>
+          <div class="text-center">
+            <h2>Tabla de Productos</h2>
           </div>
-  </div>
+          <% } %>
+
+
+            <!-- Con table-responsive se crea un scroll en la tabla -->
+            <div class="table-responsive mt-3">
+              <table class="table table-striped">
+                <thead class="thead-dark">
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Creado</th>
+                  <th scope="col">Actualizado</th>
+                  <th scope="col">Acciones</th>
+                </thead>
+                <tbody>
+
+                  <% registers.forEach(function(register) { %>
+                    <tr>
+                      <td>
+                        <%= register.name %>
+                      </td>
+                      <td>
+                        <%= register.price %>
+                      </td>
+                      <td>
+                        <%= register.type %>
+                      </td>
+                      <td>
+                        <% if( register.category ){ %>
+                          <%= register.category.name %>
+                            <% } else{ %>
+                              Sin Categoria
+                              <% } %>
+
+                      </td>
+                      <td>
+                        <%= register.created_at.toLocaleDateString() %>
+                          <%= register.created_at.toLocaleTimeString() %>
+                      </td>
+                      <td>
+                        <%= register.updated_at.toLocaleDateString() %>
+                          <%= register.updated_at.toLocaleTimeString() %>
+                      </td>
+                      <td>
+                        <div class="row">
+                          <div class="row">
+                            <form action="./edit-product" method="GET">
+                              <input type="hidden" name="id" value="<%= register.id %>">
+                              <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
+                            </form>
+                          </div>
+                          <div class="row"></div>
+                          <div class="row">
+                            <form action="./delete-product" method="POST">
+                              <input type="hidden" name="id" value="<%= register.id %>">
+                              <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
+                            </form>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+              </table>
+            </div>
+            <br>
+            <br>
+            <div class="float-start">
+              <a href="./add-product" class="btn primary-btn">Adicionar Producto</a>
+            </div>
+    </div>
+  </section>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
