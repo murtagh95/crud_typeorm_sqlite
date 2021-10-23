@@ -29,3 +29,9 @@ function counter() {
     }
   }, 500);
 }
+$(function () {
+  // Activamos los tooltip y popover
+  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="popover"]').popover();
+
+});
