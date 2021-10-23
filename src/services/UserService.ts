@@ -24,7 +24,7 @@ class UserService implements IService {
     async create({ username, email, phone, city, state, password,
         name, lastname, gender
     }: IUser) {
-        if (!username || !email ||  !password) {
+        if (!username || !email || !phone || !city || !state || !password) {
             throw new Error("Por favor enviar todos los campos");
         }
 
