@@ -6,10 +6,14 @@ import { IService } from "./InterfaceService";
 interface IUser {
     id?: string;
     username: string;
+    password?: string;
+    name?: string;
+    lastname?: string;
+    gender?: string;
     email: string;
-    phone: string;
-    city: string;
-    state: string;
+    phone?: string;
+    city?: string;
+    state?: string;
 }
 
 class UserService implements IService {
@@ -17,8 +21,10 @@ class UserService implements IService {
     constructor() {
     }
 
-    async create({ username, email, phone, city, state }: IUser) {
-        if (!username || !email || !phone || !city || !state) {
+    async create({ username, email, phone, city, state, password,
+        name, lastname, gender
+    }: IUser) {
+        if (!username || !email ||  !password) {
             throw new Error("Por favor enviar todos los campos");
         }
 
@@ -36,7 +42,8 @@ class UserService implements IService {
             throw new Error("Email ya existe");
         }
 
-        const user = usersRepository.create({ username, email, phone, city, state });
+        const user = usersRepository.create({ username, email, phone, city, state,
+            name, lastname, gender, password });
 
         await usersRepository.save(user);
 
@@ -62,6 +69,15 @@ class UserService implements IService {
         const usersRepository = getCustomRepository(UsersRepository);
 
         const user = await usersRepository.findOne(id);
+
+        return user;
+    }
+    async getDataToUsername(username: string) {
+        const usersRepository = getCustomRepository(UsersRepository);
+
+        const user = await usersRepository.find(
+            { where: { username: username } }
+        );
 
         return user;
     }

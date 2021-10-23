@@ -68,6 +68,9 @@ class GenericController implements IController {
 
     async list(request: Request, response: Response) {
         const data = await this.service.list();
+        request.flash('message', 'Links Updated successfully');
+        console.log(request.flash('message'))
+        console.log(request.app.locals)
                 
         return response.render(this.type_controller+"/index", {
             registers: data,
