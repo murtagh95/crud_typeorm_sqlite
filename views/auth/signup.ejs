@@ -12,66 +12,96 @@
     <%- include('../base/navegation', {variant:'-user'}); %>
 </header>
 
-<div class="conteiner p-4">
-    <div class="row">
-        <div class="col-md-4 mx-auto">
-            <div class="card text-center">
-                <div class="card-header">
-                    <h3>SignUp</h3>
-                </div>
-                <div class="card-body">
-                    <form action="/signup" method="POST">
+<section class="container">
 
-                        <div class="form-group mt-2">
-                            <input type="mail" name="email" placeholder="Mail" class="form-control" autofocus>
-                        </div>
+    <%- include('../base/message'); %>
 
-                        <div class="form-group mt-2">
-                            <input type="number" name="phone" placeholder="Telefono" class="form-control">
-                        </div>
+    <div class="conteiner p-4">
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <h3>REGISTRARSE</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/signup" method="POST">
 
-                        <div class="form-group mt-2">
-                            <input type="text" name="city" placeholder="Ciudad" class="form-control">
-                        </div>
+                            <div class="form-group mt-2">
+                                <input type="mail" name="email" placeholder="📧 Mail" required class="form-control border border-danger" autofocus>
+                            </div>
 
-                        <div class="form-group mt-2">
-                            <input type="text" name="state" placeholder="Estado" class="form-control">
-                        </div>
 
-                        <div class="form-group mt-2">
-                            <input type="text" name="name" placeholder="Nombre" class="form-control">
-                        </div>
-
-                        <div class="input-group mt-2">
-                            <input type="text" name="username" placeholder="&#128100; Username" required class="form-control">
-                            <div class="input-group-prepend">
+                            <div class="input-group mt-2">
+                                <input type="text" name="username" placeholder="&#128100; Username" required class="form-control border border-danger">
+                                <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1" data-toggle="tooltip" data-placement="top"
                                       title="El nombre de usuario sera pedido cada vez que quiera ingresar.">?</span>
+                                </div>
                             </div>
-                        </div>
 
 
-                        <div class="input-group mt-2">
-                            <input type="password" name="password" placeholder="&#x1F512; Password" required class="form-control">
-                            <div class="input-group-prepend">
+                            <div class="input-group mt-2">
+                                <input type="password" name="password" placeholder="&#x1F512; Password" required class="form-control border border-danger">
+                                <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1" data-toggle="tooltip" data-placement="top"
-                                      title="Debe contener mínimo 8 caracteres y una letra en mayuscula.">?</span>
+                                      title="Debe contener mínimo 8 caracteres, una letra en mayúscula, una minúscula y al menos un número.">?</span>
+                                </div>
                             </div>
-                        </div>
 
+                            <div class="form-group mt-2">
+                                <input type="text" name="name" placeholder="Nombre" class="form-control">
+                            </div>
 
-                        <div class="form-group mt-5">
-                            <button class="btn btn-success btn-block rounded-pill">
-                                SignUp
-                            </button>
-                        </div>
+                            <div class="form-group mt-2">
+                                <input type="number" name="phone" placeholder="Telefono" class="form-control"  >
+                            </div>
 
-                    </form>
+                            <div class="form-group mt-2">
+                                <select name="state" id="estado" class="form-select">
+                                    <option value="" selected disabled>Seleccione su provincia</option>
+                                    <!-- Script by hscripts.com -->
+                                    <option value="Buenos Aires">Buenos Aires</option>
+                                    <option value="Buenos Aires Capital">Buenos Aires Capital</option>
+                                    <option value="Catamarca">Catamarca</option>
+                                    <option value="Chaco">Chaco</option>
+                                    <option value="Chubut">Chubut</option>
+                                    <option value="Cordoba">Cordoba</option>
+                                    <option value="Corrientes">Corrientes</option>
+                                    <option value="Entre Rios">Entre Rios</option>
+                                    <option value="Formosa">Formosa</option>
+                                    <option value="Jujuy">Jujuy</option>
+                                    <option value="La Pampa">La Pampa</option>
+                                    <option value="La Rioja">La Rioja</option>
+                                    <option value="Mendoza">Mendoza</option>
+                                    <option value="Misiones">Misiones</option>
+                                    <option value="Neuquen">Neuquen</option>
+                                    <option value="Rio Negro">Rio Negro</option>
+                                    <option value="Salta">Salta</option>
+                                    <option value="San Juan">San Juan</option>
+                                    <option value="San Luis">San Luis</option>
+                                    <option value="Santa Cruz">Santa Cruz</option>
+                                    <option value="Santa Fe">Santa Fe</option>
+                                    <option value="Santiago del Estero">Santiago del Estero</option>
+                                    <option value="Tierra del Fuego">Tierra del Fuego</option>
+                                    <option value="Tucuman">Tucuman</option>
+                                    <!-- Script by hscripts.com -->
+                                </select>
+                            </div>
+
+                            <div class="form-group mt-5">
+                                <button class="btn btn-success btn-block rounded-pill">
+                                    Registrarse
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+</section>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"

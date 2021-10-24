@@ -21,18 +21,21 @@ passport.use('local.signin', new LocalStrategy({
     const userService = new UserService()
 
     // Buscamos en la BD el usuario
-    const user: User = await userService.getData(username)
+    const users: User[] = await userService.getDataToUsername(username)
 
-    if (!!user) {
+    if (users.length == 1) {
+        const user: User = users[0]
         // Verifico si la contraseñas coinciden, devuelve un boolean
         const validPassword = await helpers.matchPassword(password, user.password);
 
         if (validPassword) {
             done(null, user);
         }else {
+            req.flash('message', 'Usuario o contraseña incorrectos');
             done(null, false);
         }
     } else {
+        req.flash('message', 'Usuario o contraseña incorrectos');
         return done(null, false);
     }
 }));
@@ -56,15 +59,29 @@ passport.use('local.signup', new LocalStrategy({
         phone,
         "is_admin": false
     }
+    // Verifico que la contraseña sea valida
+    if(!/[a-z]/.test(password) || !/[A-Z]/.test(password) ||
+            !/[0-9]/.test(password) || password.length < 8 ){
+        req.flash('message', "Contraseña no valida");
+        return done(null, null);
+    }
+
     // Encriptamos la contraseña
     newUser.password = await helpers.encryptPassword(password);
 
-    console.log(newUser)
     // Almaceno el usuario en la BD
     const userService = new UserService()
-    const result = await userService.create(newUser)
+    try {
+        await userService.create(newUser).then((result) => {
+            req.flash('message', 'Usuario creado con éxito');
+            return done(null, result);
+        });
+    } catch (err) {
+        console.log(err.toString() )
+        req.flash('message', err.toString());
+        return done(null, null);
+    }
 
-    return done(null, result);
 }));
 
 passport.serializeUser((usr: User, done) => {

@@ -34,6 +34,7 @@ routerAuthentications.get('/profile', helpers.isLoggedIn, (req, res) => {
 
 routerAuthentications.get('/logout', (req, res) => {
     req.logOut();
+    req.flash('message', 'Gracias por usar nuestra app');
     res.redirect('/signin');
 });
 

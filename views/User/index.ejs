@@ -12,63 +12,47 @@
   </header>
   
   <section class='container mt-5'>
-    <%if(message.length > 0){ %><div class="conteiner p-4 m-1">
-      <div class="row">
-          <div class="col-md-4 mx-auto">
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong> <%= message %></strong>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-              <!-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                 
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div> -->
+      <%- include('../base/message'); %>
+
+      <br>
+      <div class="row container" width="100vw">
+
+        <% if(search){ %>
+          <div class="text-center">
+            <h2>Busca por "<%= search %>"</h2>
           </div>
-      </div>
-  </div>
-  <% } %>
+        <% } else{ %>
+          <div class="text-center">
+            <h2>Tabla de usuarios</h2>
+          </div>
+        <% } %>
 
-  <br>
-  <div class="row container" width="100vw">
+         <!-- Con table-responsive se crea un scroll en la tabla -->
+         <div class="table-responsive mt-3">
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <th scope="col">Username</th>
+              <th scope="col">Email</th>
+              <th scope="col">Teléfono</th>
+              <th scope="col">Ciudad</th>
+              <th scope="col">Es administrador</th>
+              <th scope="col">Creado</th>
+              <th scope="col">Actualizado</th>
+              <th scope="col">Acciones</th>
+          </thead>
 
-    <% if(search){ %>
-      <div class="text-center">
-        <h2>Busca por "<%= search %>"</h2>
+          <tbody>
+            <%- include('../base/table', {variant:'registers'}); %>
+          </tbody>
+          </table>
+        </div>
+
+        <br>
+        <br>
+        <div class="float-start">
+          <a href="./add" class="btn primary-btn">Adicionar usuário</a>
+        </div>
       </div>
-    <% } else{ %>  
-      <div class="text-center">
-        <h2>Tabla de usuarios</h2>
-      </div>
-    <% } %>
-    
-     <!-- Con table-responsive se crea un scroll en la tabla -->
-     <div class="table-responsive mt-3"> 
-      <table class="table table-striped">
-        <thead class="thead-dark">
-          <th scope="col">Username</th>
-          <th scope="col">Email</th>
-          <th scope="col">Teléfono</th>
-          <th scope="col">Ciudad</th>
-          <th scope="col">Es administrador</th>
-          <th scope="col">Creado</th>
-          <th scope="col">Actualizado</th>
-          <th scope="col">Acciones</th>
-      </thead>
-      
-      <tbody>
-        <%- include('../base/table', {variant:'registers'}); %>
-      </tbody>
-      </table>
-    </div>
-    
-    <br>
-    <br>
-    <div class="float-start">
-      <a href="./add" class="btn primary-btn">Adicionar usuário</a>
-    </div>
-  </div>
 
   </section>
   

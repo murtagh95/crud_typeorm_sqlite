@@ -68,10 +68,7 @@ class GenericController implements IController {
 
     async list(request: Request, response: Response) {
         const data = await this.service.list();
-        request.flash('message', 'Links Updated successfully');
-        console.log(request.flash('message'))
-        console.log(request.app.locals)
-                
+
         return response.render(this.type_controller+"/index", {
             registers: data,
             search: false
@@ -103,8 +100,6 @@ class GenericController implements IController {
         }else {
             data["is_admin"] = false
         }
-        console.log("datos para actualizar")
-        console.log(data)
 
         try {
             await this.service.update( data ).then(() => {
