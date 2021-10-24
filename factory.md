@@ -1,5 +1,4 @@
 # Patron de diseño FACTORY
-![Home page image](https://github.com/murtagh95/crud_typeorm_sqlite/blob/main/public/img/FactoryController.png)
 
 El patrón **Factory** sugiere que, en lugar de llamar al operador **new** para construir objetos 
 directamente, se invoque a un método **fábrica** especial. No te preocupes: los objetos se siguen creando a través del 
@@ -59,4 +58,20 @@ dentro del Factory.
 
 ❌ Puede ser que el código se complique, ya que debes incorporar una multitud de nuevas subclases para implementar el patrón. La situación ideal sería introducir el patrón en una jerarquía existente de clases creadoras.
 
+## 💠 Como se usó en el Proyecto
+![Factory Method](https://github.com/murtagh95/crud_typeorm_sqlite/blob/main/public/img/FactoryController.png)
 
+Se decidió utilizar este patron de diseño para lograr una abstracción a la hora de usar los controladores y a su vez tener
+el código que se repite en un solo lugar. Logrando no tener código repetido, fácil mantenimiento y facilitando la creación
+e implementación de nuevos controladores.
+
+Con la declaración del type_controller se define que tipo de controlador se debe generar y con él se definen el correcto
+enrutamiento de las diferentes vistas. Y con la declaración de data_update y data_create definimos que datos saran los 
+utilizados desde la request.body y enviados al servicio para realizar su respectiva creación/actualización
+
+Si necesitamos crear una nueva entidad podemos heredar de GenericController y cambiar solo los métodos que se necesiten o
+directamente usar dicha clase que provee de métodos básicos para realizar el CRUD de una entidad. 
+
+También se utilizó la inyección de dependencias para lograr tener desacoplado el uso del servicio/base de datos. Siempre
+y cuando el servicio implemente los métodos como se declaró en la Interfaz se podrá cambiar entre diferentes servicios sin
+afectar el funcionamiento general del controlador o del router.
