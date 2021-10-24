@@ -42,6 +42,9 @@ class User extends BaseEntity {
   })
   state!: string;
 
+  @Column()
+  is_admin: boolean;
+
   constructor() {
     super()
   }
