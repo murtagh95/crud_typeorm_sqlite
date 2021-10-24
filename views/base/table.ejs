@@ -14,7 +14,12 @@
             <%= user.city %>
         </td>
         <td>
-            <%= user.state %>
+            <% if(user.is_admin){ %>
+                SI
+            <% } else{ %>
+                NO
+            <% } %>
+
         </td>
         <td>
             <%= user.created_at.toLocaleDateString() %>

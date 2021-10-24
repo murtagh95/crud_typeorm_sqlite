@@ -14,6 +14,7 @@ interface IUser {
     phone?: string;
     city?: string;
     state?: string;
+    is_admin: boolean
 }
 
 class UserService implements IService {
@@ -22,9 +23,9 @@ class UserService implements IService {
     }
 
     async create({ username, email, phone, city, state, password,
-        name, lastname, gender
+        name, lastname, gender, is_admin
     }: IUser) {
-        if (!username || !email || !phone || !city || !state || !password) {
+        if (!username || !email  ) {
             throw new Error("Por favor enviar todos los campos");
         }
 
@@ -43,7 +44,7 @@ class UserService implements IService {
         }
 
         const user = usersRepository.create({ username, email, phone, city, state,
-            name, lastname, gender, password });
+            name, lastname, gender, password, is_admin });
 
         await usersRepository.save(user);
 
@@ -110,13 +111,13 @@ class UserService implements IService {
 
     }
 
-    async update({id, username, email, phone, city, state }: IUser) {
+    async update({id, username, email, phone, city, state, gender, lastname, name, is_admin }: IUser) {
         const usersRepository = getCustomRepository(UsersRepository);
 
         const user = await usersRepository
             .createQueryBuilder()
             .update(User)
-            .set({ username, email , phone, city, state  })
+            .set({ username, email , phone, city, state, gender, lastname, name, is_admin  })
             .where("id = :id", { id })
             .execute();
 

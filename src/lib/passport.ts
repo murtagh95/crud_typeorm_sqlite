@@ -21,16 +21,11 @@ passport.use('local.signin', new LocalStrategy({
     const userService = new UserService()
 
     // Buscamos en la BD el usuario
-    const users: User[] = await userService.getDataToUsername(username)
-    console.log(users)
-    if (users.length == 1) {
-        let user: User =  users[0]
+    const user: User = await userService.getData(username)
+
+    if (!!user) {
         // Verifico si la contraseñas coinciden, devuelve un boolean
         const validPassword = await helpers.matchPassword(password, user.password);
-        
-        console.log('Validacion')
-        console.log(validPassword)
-
 
         if (validPassword) {
             done(null, user);
@@ -59,6 +54,7 @@ passport.use('local.signup', new LocalStrategy({
         city,
         state,
         phone,
+        "is_admin": false
     }
     // Encriptamos la contraseña
     newUser.password = await helpers.encryptPassword(password);

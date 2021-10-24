@@ -98,6 +98,13 @@ class GenericController implements IController {
 
     async update(request: Request, response: Response) {
         const data = this.get_data_request(request.body, this.data_update);
+        if (request.body.is_admin){
+            data["is_admin"] = true
+        }else {
+            data["is_admin"] = false
+        }
+        console.log("datos para actualizar")
+        console.log(data)
 
         try {
             await this.service.update( data ).then(() => {

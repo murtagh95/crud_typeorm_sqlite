@@ -38,6 +38,40 @@
         <br>
         <div class="row">
             <div class="col-6">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" name="name" id="name" class="form-control" value="<%= register.name %>">
+            </div>
+            <div class="col-6">
+                <label for="lastname" class="form-label">Apellido</label>
+                <input type="text" name="lastname" id="lastname" class="form-control" value="<%= register.lastname %>">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-6">
+                <label for="gender" class="form-label">Genero</label>
+                <select name="gender" id="gender" class="form-select">
+                    <option value="<%= register.state %>" selected>
+                        <%= register.gender %>
+                    </option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="No binario">No binario</option>
+                </select>
+            </div>
+            <div class="col-6">
+                <% if(register.is_admin){ %>
+                    <input type="checkbox" class="form-check-input" name="is_admin" id="is_admin" value="is_admin"  checked>
+                <% } else{ %>
+                    <input type="checkbox" class="form-check-input" name="is_admin" id="is_admin" value="is_admin">
+                <% } %>
+
+                <label class="form-check-label" for="is_admin">Es administrador</label>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-6">
                 <label for="cidade" class="form-label">Ciudad</label>
                 <input type="text" name="city" id="cidade" class="form-control" value="<%= register.city %>">
             </div>

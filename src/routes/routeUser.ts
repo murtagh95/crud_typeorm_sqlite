@@ -10,7 +10,7 @@ const routerUser = Router();
 
 const userController =FactoryController.generateController(
   ["username", "email", "phone", "city", "state" ],
-  ["id", "username", "email", "phone", "city", "state"],
+  ["id", "username", "email", "phone", "city", "state", "gender", "lastname", "name"],
   "User",
   new UserService()
 );
