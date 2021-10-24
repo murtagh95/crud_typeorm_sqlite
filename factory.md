@@ -1,12 +1,12 @@
 # Patron de diseño FACTORY
-****
+![Home page image](https://github.com/murtagh95/crud_typeorm_sqlite/blob/main/public/img/FactoryController.png)
 
 El patrón **Factory** sugiere que, en lugar de llamar al operador **new** para construir objetos 
 directamente, se invoque a un método **fábrica** especial. No te preocupes: los objetos se siguen creando a través del 
 operador new, pero se **invocan** desde el método fábrica. Los objetos devueltos por el método fábrica a menudo se 
 denominan **productos**.
 
-##💡 Aplicabilidad
+## 💡 Aplicabilidad
 ⚡ El patrón Factory separa el código de construcción de producto del código que hace uso del producto. 
 Por ello, es más fácil extender el código de construcción de producto de forma independiente al resto del código.
 
@@ -21,7 +21,7 @@ existentes en lugar de reconstruirlos cada vez.
 tienen una **clase base o interfaz común**. Además, el método fábrica en la clase base debe tener su **tipo de retorno**
 declarado como dicha interfaz.
 
-##📓 Cómo implementarlo
+## 📓 Cómo implementarlo
 
 1. Haz que todos los productos sigan la misma interfaz. Esta interfaz deberá declarar métodos que tengan sentido en 
 todos los productos.
@@ -50,7 +50,7 @@ dentro del Factory.
 
 6. Si, tras todas las extracciones, el Factory base queda vacío, puedes hacerlo abstracto. Si queda algo dentro, puedes convertirlo en un comportamiento por defecto del método.
 
-##⚖️Pros y Contras
+## ⚖️Pros y Contras
 ✔️ Evitas un acoplamiento fuerte entre el creador y los productos concretos.
 
 ✔️Principio de responsabilidad única. Puedes mover el código de creación de producto a un lugar del programa, haciendo que el código sea más fácil de mantener.
