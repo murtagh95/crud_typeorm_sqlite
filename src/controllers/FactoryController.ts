@@ -11,7 +11,7 @@ class FactoryController {
     static generateController(
         data_create: string[],
         data_update: string[],
-        type_controller: string,
+        type_controller: "User" | "Category" | "Product",
         service: IService
     ): IController {
         if (type_controller === "Product") {
