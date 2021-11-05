@@ -28,14 +28,20 @@
 <nav class="menu-nav">
     <button class="nav-button" id="nav-button">Menu</button>
     <a href=".." class="nav-enlace desaparece">Inicio</a>
-    <a href="./user" class="nav-enlace desaparece">Listar Usuarios</a>
-    <a href="./product" class="nav-enlace desaparece">Listar Productos</a>
-    <a href="./category" class="nav-enlace desaparece">Listar Categoría</a>
-    <form class="nav-enlace desaparece" action="./search<%= variant %>" method="GET">
-        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
-
-    </form>
+    
     <% if(user){ %>
+        <% if(user.is_admin){ %>
+            <a href="./user" class="nav-enlace desaparece">Listar Usuarios</a>
+            <a href="./product" class="nav-enlace desaparece">Listar Productos</a>
+            <a href="./category" class="nav-enlace desaparece">Listar Categoría</a>
+            <form class="nav-enlace desaparece" action="./search<%= variant %>" method="GET">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
+    
+            </form>
+        <% } else{ %>
+            <a href="./profile" class="nav-enlace desaparece">Perfil</a>
+        <% } %>
+        
         <a href="./logout" class="nav-enlace desaparece"><i class="bi bi-box-arrow-left"></i></a>
     <% } else{ %>
         <a href="./signin" class="nav-enlace desaparece"><i class="bi bi-box-arrow-right"></i></a>
