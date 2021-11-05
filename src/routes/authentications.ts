@@ -1,7 +1,10 @@
 import passport from 'passport';
-import { helpers } from '../lib/auth';
 import { Request, Response } from "express";
 import { Router } from "express";
+
+// Auth
+import { helpers } from "../lib/auth"
+
 
 const routerAuthentications = Router();
 

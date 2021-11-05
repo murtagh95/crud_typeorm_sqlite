@@ -4,6 +4,10 @@ import { FactoryController } from "../controllers/FactoryController";
 // Service
 import { CategoryService } from "../services/CategoryService";
 
+// Auth
+import { helpers } from "../lib/auth"
+
+
 const routerCategory = Router();
 
 const categoryController = FactoryController.generateController(
@@ -14,31 +18,31 @@ const categoryController = FactoryController.generateController(
 );
 
 // Category
-routerCategory.get("/category", (request, response) => {
+routerCategory.get("/category", helpers.isLoggedIn, (request, response) => {
   categoryController.list(request, response)
 });
 
-routerCategory.get("/add-category", (request, response) => {
+routerCategory.get("/add-category", helpers.isLoggedIn, (request, response) => {
   categoryController.getForCreate(request, response)
 });
 
-routerCategory.post("/add-category", (request, response) => {
+routerCategory.post("/add-category", helpers.isLoggedIn, (request, response) => {
   categoryController.create(request, response)
 });
 
-routerCategory.get("/search-category", (request, response) => {
+routerCategory.get("/search-category", helpers.isLoggedIn, (request, response) => {
   categoryController.search(request, response)
 });
 
-routerCategory.get("/edit-category", (request, response) => {
+routerCategory.get("/edit-category", helpers.isLoggedIn, (request, response) => {
   categoryController.get(request, response)
 });
 
-routerCategory.post("/edit-category", (request, response) => {
+routerCategory.post("/edit-category", helpers.isLoggedIn, (request, response) => {
   categoryController.update(request, response)
 });
 
-routerCategory.post("/delete-category", (request, response) => {
+routerCategory.post("/delete-category", helpers.isLoggedIn, (request, response) => {
   categoryController.delete(request, response)
 });
 

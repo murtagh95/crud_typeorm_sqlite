@@ -6,6 +6,10 @@ import { FactoryController } from "../controllers/FactoryController";
 // Service
 import { ProductService } from "../services/ProductService";
 
+// Auth
+import { helpers } from "../lib/auth"
+
+
 const routerProduct = Router();
 
 const productController = FactoryController.generateController(
@@ -16,31 +20,31 @@ const productController = FactoryController.generateController(
 );
 
 // Routes
-routerProduct.get("/product", (request, response) => {
+routerProduct.get("/product", helpers.isLoggedIn, (request, response) => {
   productController.list(request, response)
 });
 
-routerProduct.get("/add-product", (request, response) => {
+routerProduct.get("/add-product", helpers.isLoggedIn, (request, response) => {
   productController.getForCreate(request, response)
 });
 
-routerProduct.post("/add-product", (request, response) => {
+routerProduct.post("/add-product", helpers.isLoggedIn, (request, response) => {
   productController.create(request, response)
 });
 
-routerProduct.get("/search-product", (request, response) => {
+routerProduct.get("/search-product", helpers.isLoggedIn, (request, response) => {
   productController.search(request, response)
 });
 
-routerProduct.get("/edit-product", (request, response) => {
+routerProduct.get("/edit-product", helpers.isLoggedIn, (request, response) => {
   productController.get(request, response)
 });
 
-routerProduct.post("/edit-product", (request, response) => {
+routerProduct.post("/edit-product", helpers.isLoggedIn, (request, response) => {
   productController.update(request, response)
 });
 
-routerProduct.post("/delete-product", (request, response) => {
+routerProduct.post("/delete-product", helpers.isLoggedIn, (request, response) => {
   productController.delete(request, response)
 });
 
