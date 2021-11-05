@@ -8,7 +8,7 @@
 <body>
 
     <header>
-        <%- include('../base/navegation', {variant:'-user'}); %>
+        <%- include('../base/navegation', {variant:'-login_user'}); %>
     </header>
 
     <div class="container p-4">
@@ -19,11 +19,11 @@
 
                 <div class="card text-center">
                     <div class="card-body">
-                        <h3>Bienvenido <%= user.fullname %> </h3>
-                        <h4> <%= user.username %></h4>
+                        <h3>Bienvenido <%= login_user.fullname %> </h3>
+                        <h4> <%= login_user.username %></h4>
                     
                         <form action="./edit" method="GET">
-                            <input type="hidden" name="id" value="<%= user.id %>">
+                            <input type="hidden" name="id" value="<%= login_user.id %>">
                             <button type="submit" class="btn btn-primary m-4">Modifica tu perfil</button>
                         </form>
 

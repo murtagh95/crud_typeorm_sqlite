@@ -29,8 +29,8 @@
     <button class="nav-button" id="nav-button">Menu</button>
     <a href=".." class="nav-enlace desaparece">Inicio</a>
     
-    <% if(user){ %>
-        <% if(user.is_admin){ %>
+    <% if(login_user){ %>
+        <% if(login_user.is_admin){ %>
             <a href="./user" class="nav-enlace desaparece">Listar Usuarios</a>
             <a href="./product" class="nav-enlace desaparece">Listar Productos</a>
             <a href="./category" class="nav-enlace desaparece">Listar Categoría</a>
