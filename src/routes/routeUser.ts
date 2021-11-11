@@ -50,5 +50,13 @@ routerUser.post("/delete-user", helpers.isLoggedIn, (request, response) => {
   userController.delete(request, response)
 });
 
+routerUser.get("/change-pass", helpers.isLoggedIn, (request, response) => {
+  response.render("auth/change_pass");
+});
+
+// routerUser.post("/change-pass", helpers.isLoggedIn, (request, response) => {
+//   userController.change_pass(request, response)
+// });
+
 
 export { routerUser };

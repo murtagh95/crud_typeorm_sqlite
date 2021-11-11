@@ -4,6 +4,7 @@ import { IService } from "../services/InterfaceService";
 // Controller
 import { GenericController } from "./GenericController";
 import { IController } from "./InterfaceController";
+import { UserController } from "./UserController";
 import { ProductController } from "./ProductController";
 
 class FactoryController {
@@ -21,7 +22,16 @@ class FactoryController {
                 type_controller,
                 service,
             )
-        }else{
+        }
+        else if (type_controller === "User"){
+            return new UserController(
+                data_create,
+                data_update,
+                type_controller,
+                service,
+            )
+        }
+        else{
             return new GenericController(
                 data_create,
                 data_update,
