@@ -14,6 +14,9 @@ class ImageProduct  extends BaseEntity {
   @JoinColumn({name: "product_fk_id"})
   product: Product;
 
+  @Column()
+  is_main: boolean;
+
   constructor() {
     super()
   }
