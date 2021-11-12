@@ -8,7 +8,9 @@ class ImageProduct  extends BaseEntity {
   @Column()
   name: string;
 
-  @ManyToOne(type => Product)
+  @ManyToOne(type => Product, { 
+    onDelete: "CASCADE" 
+  })
   @JoinColumn({name: "product_fk_id"})
   product: Product;
 

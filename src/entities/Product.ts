@@ -22,9 +22,7 @@ class Product  extends BaseEntity{
   @JoinColumn({name: "category_fk_id"})
   category: Category;
 
-  @OneToMany(() => ImageProduct, images => images.product, {
-    cascade: true
-  })
+  @OneToMany(() => ImageProduct, images => images.product)
   images: ImageProduct[];
 
   constructor() {
