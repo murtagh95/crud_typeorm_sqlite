@@ -11,7 +11,10 @@ services:
     links:
       - "db:database"
     volumes:
-      - ./:/home/node/app
+      - .:/code
+      - ./public:/opt/services/simplisaas/public
+      - ./media:/opt/services/simplisaas/media
+      
     command: ['npm', 'run', 'dev']
 
   nginx:
@@ -20,7 +23,7 @@ services:
     volumes:
         - .:/code
         - ./conf/nginx/:/etc/nginx/templates/
-        - ./public:/opt/services/simplisaas/static
+        - ./public:/opt/services/simplisaas/public
         - ./media:/opt/services/simplisaas/media
     environment:
       APP_PORT: ${APP_PORT}
@@ -47,7 +50,7 @@ services:
       MYSQL_ROOT_PASSWORD: 'secret'
     ports:
       # <Port exposed> : < MySQL Port running inside container>
-      - '3310:3306'
+      - ${DB_PORT}:3306
     expose:
       # Opens port 3306 on the container
       - '3306'
@@ -58,3 +61,5 @@ services:
 # Names our volume
 volumes:
   my-db:
+  media:
+  public:
