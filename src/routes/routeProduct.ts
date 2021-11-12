@@ -37,7 +37,7 @@ routerProduct.get("/edit-product", (request, response) => {
   productController.get(request, response)
 });
 
-routerProduct.post("/edit-product", (request, response) => {
+routerProduct.post("/edit-product", upload.single('photo'), (request, response) => {
   productController.update(request, response)
 });
 

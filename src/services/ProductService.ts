@@ -60,7 +60,7 @@ class ProductService implements IService {
         const productRepository = getCustomRepository(ProductRepository)
         
         const products = await productRepository.find({ relations: ["category", "images"] });
-        console.table(products)
+        
         return products;
     }
 
