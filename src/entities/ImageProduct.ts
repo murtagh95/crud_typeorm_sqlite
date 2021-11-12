@@ -8,7 +8,8 @@ class ImageProduct  extends BaseEntity {
   @Column()
   name: string;
 
-  @ManyToOne(() => Product, product => product.images)
+  @ManyToOne(type => Product)
+  @JoinColumn({name: "product_fk_id"})
   product: Product;
 
   constructor() {
