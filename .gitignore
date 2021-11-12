@@ -4,3 +4,6 @@ src/database/*.sqlite
 
 # Environments
 .env
+
+# Media
+media/img/*

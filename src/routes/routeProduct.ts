@@ -2,6 +2,7 @@ import { Router } from "express";
 
 // Controller
 import { FactoryController } from "../controllers/FactoryController";
+import { upload } from "../lib/storage";
 
 // Service
 import { ProductService } from "../services/ProductService";
@@ -24,7 +25,7 @@ routerProduct.get("/add-product", (request, response) => {
   productController.getForCreate(request, response)
 });
 
-routerProduct.post("/add-product", (request, response) => {
+routerProduct.post("/add-product", upload.single('image'), (request, response) => {
   productController.create(request, response)
 });
 
