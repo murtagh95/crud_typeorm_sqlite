@@ -33,6 +33,7 @@
                   <th scope="col">Precio</th>
                   <th scope="col">Tipo</th>
                   <th scope="col">Categoria</th>
+                  <th scope="col">Imagen Principal</th>
                   <th scope="col">Creado</th>
                   <th scope="col">Actualizado</th>
                   <th scope="col">Acciones</th>
@@ -56,6 +57,23 @@
                             <% } else{ %>
                               Sin Categoria
                               <% } %>
+
+                      </td>
+                      <td>
+                        <% if( register.images ){ %>
+                          <% register.images.forEach(function(image) { %>
+                            <% if( image.is_main ){ %>
+
+                              <a href="media/img/product/<%= image.name %>">Imagen</a>
+
+                            <% } else{ %>
+                                Sin Imagen Principal
+                            <% } %>
+                          <% }) %>
+
+                        <% } else{ %>
+                              Sin Imagen
+                        <% } %>
 
                       </td>
                       <td>

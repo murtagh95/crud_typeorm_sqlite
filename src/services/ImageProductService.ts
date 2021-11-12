@@ -15,7 +15,7 @@ class ImageProductService{
             throw new Error("Por favor enviar todos los campos");
         }
         
-        const image = imageProductRepository.create({ name });
+        const image = imageProductRepository.create({ name, is_main:false });
         image.product = product
 
         await imageProductRepository.save(image);
