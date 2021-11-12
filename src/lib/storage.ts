@@ -1,4 +1,7 @@
 import { Request } from 'express'
+import path from "path";
+import { v4 as uuid } from "uuid";
+
 import multer, { FileFilterCallback } from 'multer'
 
 type DestinationCallback = (error: Error | null, destination: string) => void
@@ -10,7 +13,7 @@ export const fileStorage = multer.diskStorage({
         file: Express.Multer.File,
         callback: DestinationCallback
     ): void => {
-        callback(null, './media/img')
+        callback(null, './media/img/product')
     },
 
     filename: (
@@ -18,8 +21,8 @@ export const fileStorage = multer.diskStorage({
         file: Express.Multer.File, 
         callback: FileNameCallback
     ): void => {
-        
-        callback(null, `${file.fieldname}-${Date.now()}`)
+        const extension = path.extname(file.originalname)
+        callback(null, `${file.fieldname}-${uuid()}${extension}`)
     }
 })
 
@@ -28,10 +31,8 @@ export const fileFilter = (
     file: Express.Multer.File,
     callback: FileFilterCallback
 ): void => {
-    if (
-        file.mimetype === 'image/png' ||
-        file.mimetype === 'image/jpg' ||
-        file.mimetype === 'image/jpeg'
+    const filetypes = /jpeg|jpg|png|gif/
+    if ( filetypes.test(file.mimetype)
     ) {
         callback(null, true)
     } else {
@@ -39,5 +40,10 @@ export const fileFilter = (
     }
 }
 
-
-export const upload = multer({storage: fileStorage, fileFilter : fileFilter});
+export const upload = multer(
+    {
+        storage: fileStorage, 
+        fileFilter : fileFilter, 
+        limits: {fileSize: 1000000}
+    }
+);
