@@ -29,7 +29,7 @@ class ProductService implements IService {
 
         await productRepository.save(product);
 
-        console.log(product)
+        
         return product;
 
     }
