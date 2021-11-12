@@ -7,8 +7,8 @@ server {
     client_max_body_size 5M;
     gzip on;
 
-    location /static/ {
-        alias   /opt/services/simplisaas/static/;
+    location /public/ {
+        alias   /opt/services/simplisaas/public/;
     }
 
     location /media/ {
