@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryColumn, ManyToOne, JoinColumn } from "typeorm";
+import { Column, Entity, OneToMany, ManyToOne, JoinColumn } from "typeorm";
 import { Category } from "./Category";
+import { ImageProduct } from "./ImageProduct";
 import { BaseEntity } from "./baseEntity";
 
 @Entity("product")
@@ -20,6 +21,9 @@ class Product  extends BaseEntity{
   @ManyToOne(() => Category, category => category.product)
   @JoinColumn({name: "category_fk_id"})
   category: Category;
+
+  @OneToMany(() => ImageProduct, images => images.product)
+  images: ImageProduct[];
 
   constructor() {
     super()

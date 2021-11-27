@@ -14,6 +14,7 @@ import { routerCategory } from "./routes/routeCategory";
 import { routerProduct } from "./routes/routeProduct";
 import { routerUser } from "./routes/routeUser";
 import { routerAuthentications } from "./routes/authentications";
+import { routerImageProduct } from "./routes/routeImageProduct";
 
 const app = express();
 
@@ -48,6 +49,7 @@ app.use(routerCategory);
 app.use(routerUser);
 app.use(routerProduct);
 app.use(routerAuthentications);
+app.use(routerImageProduct);
 
 // Config
 app.set('view engine', 'ejs');

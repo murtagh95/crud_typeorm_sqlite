@@ -4,10 +4,13 @@ import { GenericController } from "./GenericController";
 // Service
 import { IService } from "../services/InterfaceService";
 import { CategoryService } from "../services/CategoryService";
+import { ImageProductService } from "../services/ImageProductService";
+import { Product } from "../entities/Product";
 
 
 class ProductController extends GenericController {
     private categoryService = new CategoryService();
+    private imageProductService = new ImageProductService();
     constructor(
         protected data_create: string[],
         protected data_update: string[],
@@ -33,7 +36,11 @@ class ProductController extends GenericController {
 
 
         try {
-            await this.service.create( data ).then(() => {
+            await this.service.create( data ).then((product) => {
+                if(request.file && product instanceof Product ){
+                    const image = this.imageProductService.create(request.file.filename, product)
+                }
+
                 response.render("Product/message", {
                     message: "Producto creado con exito"
                 });
@@ -73,9 +80,14 @@ class ProductController extends GenericController {
             data["category"].toString()
         );
         data["category"] = category
-
+        console.log(request.file)
         try {
-            await this.service.update( data ).then(() => {
+            await this.service.update( data ).then((product) => {
+                if(request.file && product instanceof Product ){
+                    console.log(product)
+                    const image = this.imageProductService.create(request.file.filename, product)
+                }
+
                 response.render("Product/message", {
                     message: "Producto actualizado con exito"
                 });

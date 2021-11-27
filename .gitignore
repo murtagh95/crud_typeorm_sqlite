@@ -1,3 +1,9 @@
 node_modules
 .idea
 src/database/*.sqlite
+
+# Environments
+.env
+
+# Media
+media/img/*

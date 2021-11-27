@@ -29,7 +29,7 @@ class ProductService implements IService {
 
         await productRepository.save(product);
 
-        console.log(product)
+        
         return product;
 
     }
@@ -51,7 +51,7 @@ class ProductService implements IService {
     async getData(id: string) {
         const productRepository = getCustomRepository(ProductRepository)
 
-        const product = await productRepository.findOne(id, { relations: ["category"] });
+        const product = await productRepository.findOne(id, { relations: ["category", "images"] });
 
         return product;
     }
@@ -59,8 +59,8 @@ class ProductService implements IService {
     async list() {
         const productRepository = getCustomRepository(ProductRepository)
         
-        const products = await productRepository.find({ relations: ["category"] });
-
+        const products = await productRepository.find({ relations: ["category", "images"] });
+        
         return products;
     }
 
