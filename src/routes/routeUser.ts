@@ -6,6 +6,10 @@ import { FactoryController } from "../controllers/FactoryController";
 // Service
 import { UserService } from "../services/UserService";
 
+// Auth
+import { helpers } from "../lib/auth"
+
+
 const routerUser = Router();
 
 const userController =FactoryController.generateController(
@@ -21,30 +25,38 @@ routerUser.get("/", (request, response) => {
 });
 
 
-routerUser.get("/user", (request, response) => {
+routerUser.get("/user", helpers.isLoggedIn, (request, response) => {
   userController.list(request, response)
 });
 
-routerUser.get("/add",(request, response) => {
+routerUser.get("/add", helpers.isLoggedIn, (request, response) => {
   userController.getForCreate(request, response)
 });
 
-routerUser.post("/add-user",(request, response) => {
+routerUser.post("/add-user", helpers.isLoggedIn, (request, response) => {
   userController.create(request, response)
 });
 
-routerUser.get("/search-user", (request, response) => {
+routerUser.get("/search-user", helpers.isLoggedIn, (request, response) => {
   userController.search(request, response)
 });
-routerUser.get("/edit", (request, response) => {
+routerUser.get("/edit", helpers.isLoggedIn, (request, response) => {
   userController.get(request, response)
 });
-routerUser.post("/edit-user", (request, response) => {
+routerUser.post("/edit-user", helpers.isLoggedIn, (request, response) => {
   userController.update(request, response)
 });
-routerUser.post("/delete-user", (request, response) => {
+routerUser.post("/delete-user", helpers.isLoggedIn, (request, response) => {
   userController.delete(request, response)
 });
+
+routerUser.get("/change-pass", helpers.isLoggedIn, (request, response) => {
+  response.render("auth/change_pass");
+});
+
+// routerUser.post("/change-pass", helpers.isLoggedIn, (request, response) => {
+//   userController.change_pass(request, response)
+// });
 
 
 export { routerUser };

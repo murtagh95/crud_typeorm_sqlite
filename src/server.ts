@@ -38,7 +38,7 @@ app.use((req, res, next) => {
   app.locals.success = req.flash('success');
 
   app.locals.message1 = 'hola';
-  app.locals.user = req.user;
+  app.locals.login_user = req.user;
   next();
 });
 
