@@ -16,7 +16,7 @@
         <h2>Info de Producto</h2>
     </div>
     <br>
-    <form action="./edit-product" method="POST">
+    <form action="./edit-product" method="POST"  enctype="multipart/form-data">
         <input type="hidden" name="id" value="<%= register.id %>">
         <div class="row">
             <div class="col-6">
@@ -65,8 +65,8 @@
         <br>
         <div class="row">
             <div class="col-6">
-                <label for="image" class="form-label">Imagen</label>
-                <input type="file" name="image" id="image"/>
+                <label for="photo" class="form-label">Imagen</label>
+                <input type="file" name="photo" id="photo" multiple/>
             </div>
             
         </div>

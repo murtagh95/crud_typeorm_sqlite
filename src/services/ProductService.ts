@@ -91,7 +91,7 @@ class ProductService implements IService {
             .where("id = :id", { id })
             .execute();
 
-        return product;
+        return this.getData(id);
 
     }
 }
