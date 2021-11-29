@@ -42,15 +42,19 @@
 
                   <% registers.forEach(function(register) { %>
                     <tr>
+                      <!-- Nombre -->
                       <td>
                         <%= register.name %>
                       </td>
+                      <!-- Precio -->
                       <td>
                         <%= register.price %>
                       </td>
+                      <!-- Tipo -->
                       <td>
                         <%= register.type %>
                       </td>
+                      <!-- Categoria -->
                       <td>
                         <% if( register.category ){ %>
                           <%= register.category.name %>
@@ -59,15 +63,14 @@
                               <% } %>
 
                       </td>
+                      <!-- Imagen Principal -->
                       <td>
                         <% if( register.images ){ %>
                           <% register.images.forEach(function(image) { %>
                             <% if( image.is_main ){ %>
 
                               <a href="media/img/product/<%= image.name %>">Imagen</a>
-
-                            <% } else{ %>
-                                Sin Imagen Principal
+                                
                             <% } %>
                           <% }) %>
 
@@ -76,14 +79,17 @@
                         <% } %>
 
                       </td>
+                      <!-- Creado -->
                       <td>
                         <%= register.created_at.toLocaleDateString() %>
                           <%= register.created_at.toLocaleTimeString() %>
                       </td>
+                      <!-- Actualizado -->
                       <td>
                         <%= register.updated_at.toLocaleDateString() %>
                           <%= register.updated_at.toLocaleTimeString() %>
                       </td>
+                      <!-- Acciones -->
                       <td>
                         <div class="row">
                           <div class="row">
