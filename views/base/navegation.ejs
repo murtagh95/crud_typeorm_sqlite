@@ -1,50 +1,76 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href=".."><img src="img/icon.png" alt="Node.js icon" class="nav-icon"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="..">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="./user">Listar Usuarios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="./product">Listar Productos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="./category">Listar Categoria</a>
-                </li>
-            </ul>
-           
-        </div>
-    </div>
-</nav> -->
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-between">
 
-<nav class="menu-nav">
-    <button class="nav-button" id="nav-button">Menu</button>
-    <a href=".." class="nav-enlace desaparece">Inicio</a>
-    
-    <% if(login_user){ %>
-        <% if(login_user.is_admin){ %>
-            <a href="./user" class="nav-enlace desaparece">Listar Usuarios</a>
-            <a href="./product" class="nav-enlace desaparece">Listar Productos</a>
-            <a href="./category" class="nav-enlace desaparece">Listar Categoría</a>
-            <form class="nav-enlace desaparece" action="./search<%= variant %>" method="GET">
-                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
-    
-            </form>
-        <% } else{ %>
-            <a href="./profile" class="nav-enlace desaparece">Perfil</a>
-        <% } %>
+      <div class="logo">
+        <h1 class="text-light"><a href="..">SolCi</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+            <li><a href="..">Inicio</a></li>
         
-        <a href="./logout" class="nav-enlace desaparece"><i class="bi bi-box-arrow-left"></i></a>
-    <% } else{ %>
-        <a href="./signin" class="nav-enlace desaparece"><i class="bi bi-box-arrow-right"></i></a>
-    <% } %>
+            <% if(login_user){ %>
+        
+                <% if(login_user.is_admin){ %>
+                    <li>
+                        <a href="./user">Listar Usuarios</a>
+                    </li>
+                    
+                    <li>
+                        <a href="./product">Listar Productos</a>
+                    </li>
+                    
+                    <li>
+                        <a href="./category">Listar Categoría</a>
+                    </li>
+                    
+                    <li>
+                        <form action="./search<%= variant %>" method="GET">
+                        
+                            <input class="form-control m-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
+            
+                        </form>
+                    </li>
+            
+                <% } else{ %>
+                    <li>
+                        <a href="./profile">Perfil</a>
+                    </li>
+                <% } %>
+                
+                <li>
+                    <a href="./logout"><i class="bi bi-box-arrow-left"></i></a>
+                </li>
+            <% } else{ %>
+                <li>
+                    <a href="./signin"><i class="bi bi-box-arrow-right"></i></a>
+                </li>
+            <% } %>
+            <!-- <li><a href="about.html">About</a></li> -->
+          <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li>
+          <li><a href="contact.html">Contact</a></li> -->
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
 
-</nav>
+    </div>
+  </header><!-- End Header -->
