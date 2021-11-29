@@ -37,8 +37,10 @@ app.use((req, res, next) => {
   app.locals.message = req.flash('message');
   app.locals.success = req.flash('success');
 
-  app.locals.message1 = 'hola';
   app.locals.login_user = req.user;
+  app.locals.compani_phone = "261-2518971";
+  app.locals.compani_mail = "nec.catalano@gmail.com";
+  app.locals.compani_address = "Calle Siempre Viva 772";
   next();
 });
 
