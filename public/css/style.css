@@ -654,6 +654,11 @@ a {
     font-weight: 600;
     color: #2b2320;
   }
+  .img-fluid {
+    height: 300px;
+    width: 100%;
+    
+  }
   .portfolio .portfolio-item .portfolio-info p {
     color: #65534c;
     font-size: 14px;

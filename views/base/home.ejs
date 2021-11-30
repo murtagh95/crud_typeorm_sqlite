@@ -3,6 +3,7 @@
 
 <head>
   <%- include('../base/head'); %>
+  <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet"> 
 </head>
 
 <body>
@@ -65,6 +66,59 @@
   </div>
 </section><!-- End Services Section -->
 
+<!-- ======= Portfolio Section ======= -->
+<section id="portfolio" class="portfolio">
+  <div class="container">
+
+    <div class="row" data-aos="fade-up">
+      <div class="col-lg-12 d-flex justify-content-center">
+        <ul id="portfolio-flters">
+          <li data-filter="*" class="filter-active">Todos</li>
+          <% categories.forEach(function(category) { %>
+            
+            <li data-filter=".filter-<%= category.name %>"><%= category.name %></li>
+
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row portfolio-container" data-aos="fade-up">
+      <% products.forEach(function(product) { %>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-<%= product.category.name %>">
+          <% if( product.images.length !== 0 ){ %>
+            
+            <% link = "" %>  
+            <% product.images.forEach(function(image) { 
+              if(image.is_main){ 
+                link = "media/img/product/" + image.name
+              }
+            }) %>
+
+            <% if(!link){
+              link = "media/img/product/" + product.images[0]
+            } %>
+          <% } else{ 
+            link = "/img/product_default.jpg"
+          } %>
+          
+            <img src="<%= link %>" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4><%= product.name %></h4>
+              <p>$ <%= product.price %></p>
+              <a href="<%= link %>" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="<%= product.name %>"><i class="bi bi-plus"></i></a>
+              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bi bi-link"></i></a>
+            </div>
+          </div>
+            
+      <% }) %>
+
+      
+
+    </div>
+
+  </div>
+</section><!-- End Portfolio Section -->
   </main><!-- End #main -->
 
   <%- include('../base/footer'); %>

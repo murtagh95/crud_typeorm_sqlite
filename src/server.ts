@@ -15,6 +15,7 @@ import { routerProduct } from "./routes/routeProduct";
 import { routerUser } from "./routes/routeUser";
 import { routerAuthentications } from "./routes/authentications";
 import { routerImageProduct } from "./routes/routeImageProduct";
+import { routerHome } from "./routes/routeHome";
 
 const app = express();
 
@@ -52,6 +53,7 @@ app.use(routerUser);
 app.use(routerProduct);
 app.use(routerAuthentications);
 app.use(routerImageProduct);
+app.use(routerHome);
 
 // Config
 app.set('view engine', 'ejs');

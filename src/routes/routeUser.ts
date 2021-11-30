@@ -19,11 +19,6 @@ const userController =FactoryController.generateController(
   new UserService()
 );
 
-// Home
-routerUser.get("/", (request, response) => {
-  response.render("base/home");
-});
-
 
 routerUser.get("/user", helpers.isLoggedIn, (request, response) => {
   userController.list(request, response)
