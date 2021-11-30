@@ -3,7 +3,7 @@ import { Router } from "express";
 import { upload } from "../lib/storage";
 
 // Controller
-import { FactoryController } from "../controllers/FactoryController";
+import { ProductController } from "../controllers/ProductController";
 
 // Service
 import { ProductService } from "../services/ProductService";
@@ -14,7 +14,7 @@ import { helpers } from "../lib/auth"
 
 const routerProduct = Router();
 
-const productController = FactoryController.generateController(
+const productController = new ProductController(
   ["name", "price", "type", "category" ],
   ["id", "name", "price", "type", "category"],
   "Product",
