@@ -85,28 +85,12 @@
 
     <div class="row portfolio-container" data-aos="fade-up">
       <% products.forEach(function(product) { %>
-        <div class="col-lg-4 col-md-6 portfolio-item filter-<%= product.category.name %>">
-          <% if( product.images.length !== 0 ){ %>
-            
-            <% link = "" %>  
-            <% product.images.forEach(function(image) { 
-              if(image.is_main){ 
-                link = "media/img/product/" + image.name
-              }
-            }) %>
-
-            <% if(!link){
-              link = "media/img/product/" + product.images[0]
-            } %>
-          <% } else{ 
-            link = "/img/product_default.jpg"
-          } %>
-          
-            <img src="<%= link %>" class="img-fluid" alt="">
+        <div class="col-lg-4 col-md-6 portfolio-item filter-<%= product.category.name %>">        
+            <img src="<%= product.link_img %>" class="img-fluid" alt="">
             <div class="portfolio-info">
               <h4><%= product.name %></h4>
               <p>$ <%= product.price %></p>
-              <a href="<%= link %>" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="<%= product.name %>"><i class="bi bi-plus"></i></a>
+              <a href="<%= product.link_img %>" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="<%= product.name %>"><i class="bi bi-plus"></i></a>
               <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bi bi-link"></i></a>
             </div>
           </div>

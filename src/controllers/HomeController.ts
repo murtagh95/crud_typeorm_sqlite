@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { json, Request, Response } from "express";
 
 // Service
 import { ProductService } from "../services/ProductService";
@@ -12,9 +12,29 @@ class HomeController{
     async get(request: Request, response: Response) {
         const products = await this.productService.list();
         const categories = await this.categoryService.list();
-        products.forEach(product => console.log(product.images))
+
+        let new_products = products.map(product => {
+            let link = ''
+            if(product.images.length !== 0){
+                product.images.forEach(function(image) { 
+                    if(image.is_main){ 
+                      link = "media/img/product/" + image.name
+                    }
+                })
+                if(!link){
+                    link = "media/img/product/" + product.images[0].name
+                }
+            }
+            else{
+                link = "/img/product_default.jpg"
+            }
+            
+            product['link_img'] = link
+            return product
+        })
+        
         return response.render("base/home", {
-            products: products,
+            products: new_products,
             categories: categories
         });
     }
