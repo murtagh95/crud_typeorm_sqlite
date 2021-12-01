@@ -1,11 +1,3 @@
-body {
-    background-color: #3bb2b8;
-    background: linear-gradient( 25deg, rgba(66, 230, 149, 1), rgba(66, 32, 149, 1));
-    background-repeat: no-repeat;
-    font-family: "Open Sans", sans-serif;
-    max-width: 100vw!important;
-    min-height: 100vh!important;
-}
 
 .container-box {
     max-width: 800px;
@@ -734,6 +726,8 @@ section {
   font-size: 24px;
   top: calc(50% - 18px);
   color: #483b36;
+  border: none;
+
 }
 .portfolio .portfolio-item .portfolio-info .preview-link:hover, .portfolio .portfolio-item .portfolio-info .details-link:hover {
   color: #f03c02;
@@ -766,13 +760,14 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Portfolio Details
+# Product Details
 --------------------------------------------------------------*/
 .portfolio-details {
   padding-top: 40px;
 }
 .portfolio-details .portfolio-details-slider img {
   width: 100%;
+  height: 70vh;
 }
 .portfolio-details .portfolio-details-slider .swiper-pagination {
   margin-top: 20px;

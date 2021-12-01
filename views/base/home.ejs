@@ -107,7 +107,13 @@
               <h4><%= product.name %></h4>
               <p>$ <%= product.price %></p>
               <a href="<%= product.link_img %>" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="<%= product.name %>"><i class="bi bi-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bi bi-link"></i></a>
+              <form action="./product-detail" method="GET">
+                <input type="hidden" name="id" value="<%= product.id %>">
+                <button type="submit" class="details-link" title="More Details">
+                  <i class="bi bi-link"></i>
+                </button>
+              </form>
+
             </div>
           </div>
             

@@ -3,7 +3,7 @@
 
 <head>
     <%- include('../base/head'); %>
-        <link rel="stylesheet" href="css/style_img_product.css">
+    <link rel="stylesheet" href="css/style_img_product.css">
 </head>
 
 <body>
@@ -20,18 +20,18 @@
         <form action="./edit-product" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<%= register.id %>">
             <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-12">
                     <label for="name" class="form-label">Nombre</label>
                     <input type="text" name="name" id="name" class="form-control" value="<%= register.name %>">
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-12">
                     <label for="price" class="form-label">Precio</label>
                     <input type="number" name="price" id="price" class="form-control" value="<%= register.price %>">
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-12">
                     <label for="category" class="form-label">Categoria</label>
                     <select name="category" id="category" class="form-select">
                     <% if( register.category ){ %>
@@ -58,14 +58,15 @@
                       <% }) %>
                 </select>
                 </div>
-                <div class="col-6">
-                    <label for="type" class="form-label">Tipo</label>
-                    <input type="text" name="type" id="type" class="form-control" value="<%= register.type %>">
+                <div class="col-lg-6 col-md-12">
+                    <label for="detail" class="form-label">Detalle</label>
+                    <!-- <input type="text" name="detail" id="detail" class="form-control" value="<%= register.detail %>"> -->
+                    <textarea name="detail"  id="detail" class="form-control" rows="3" cols="50"><%= register.detail %></textarea>
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-12">
                     <label for="photo" class="form-label">Imagen</label>
                     <input type="file" name="photo" id="photo" multiple/>
                 </div>
@@ -73,12 +74,12 @@
             </div>
             <br>
             <div class="row mt-5">
-                <div class="col-6">
+                <div class="col-6 ">
                     <div class="float-start">
                         <a href=".." class="btn secondary-btn">Volver al home</a>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-6 ">
                     <div class="float-end">
                         <button type="submit" class="btn primary-btn">Actualizar Producto</button>
                     </div>

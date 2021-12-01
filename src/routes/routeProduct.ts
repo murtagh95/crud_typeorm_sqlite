@@ -15,8 +15,8 @@ import { helpers } from "../lib/auth"
 const routerProduct = Router();
 
 const productController = new ProductController(
-  ["name", "price", "type", "category" ],
-  ["id", "name", "price", "type", "category"],
+  ["name", "price", "detail", "category" ],
+  ["id", "name", "price", "detail", "category"],
   "Product",
   new ProductService()
 );
@@ -44,12 +44,16 @@ routerProduct.get("/edit-product", helpers.isLoggedIn, (request, response) => {
 });
 
 
-routerProduct.post("/edit-product", upload.array('photo', 5), (request, response) => {
+routerProduct.post("/edit-product", helpers.isLoggedIn, upload.array('photo', 5), (request, response) => {
   productController.update(request, response)
 });
 
 routerProduct.post("/delete-product", helpers.isLoggedIn, (request, response) => {
   productController.delete(request, response)
+});
+
+routerProduct.get("/product-detail/", (request, response) => {
+  productController.get_detail(request, response)
 });
 
 export { routerProduct };

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <%- include('../base/head'); %>
+  <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet"> 
+  <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <%- include('../base/top_bar'); %>
+  <%- include('../base/navegation', {variant:'-user'}); %>
+
+  <main class="main">
+
+     <!-- ======= Breadcrumbs ======= -->
+     <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Detalle Producto</h2>
+          <ol>
+            <li><a href="..">Inicio</a></li>
+            <li>Detalle Producto</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper">
+              <div class="swiper-wrapper align-items-center">
+                <% if( product.images ){ %>
+
+                  <% product.images.forEach(function(image) { %>
+
+                    <div class="swiper-slide">
+                      <img src="media/img/product/<%= image.name %>"  alt="">
+                    </div>                      
+                    
+                  <% }) %>
+                <% } else{ %>
+
+                  <div class="swiper-slide">
+                    <img src="assets/img/portfolio/portfolio-2.jpg" alt="">
+                  </div>
+
+                <% } %>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Información del producto</h3>
+              <ul>
+                <li><strong>Nombre</strong>: <%= product.name %></li>
+                <li><strong>Precio</strong>: <%= product.price %></li>
+                <li>
+                  <form action="./edit-image" method="GET">
+                    <input type="hidden" name="id" value="<%= product.id %>">
+                    <button type="submit" class="btn btn-success">
+                        Reservar Turno
+                    </button>
+                </form>
+                </li>
+              </ul>
+            </div>
+            <div class="portfolio-description">
+              <h2>Detalle</h2>
+              <p>
+                <%= product.detail %>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
+
+  </main><!-- End #main -->
+
+  <%- include('../base/footer'); %>
+
+  <!-- Vendor JS Files -->
+  <script src="vendor/aos/aos.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- <script src="js/script.js"></script> -->
+  <script src="js/detailProduct.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

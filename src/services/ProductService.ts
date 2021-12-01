@@ -12,19 +12,19 @@ interface IProduct {
     id?: string;
     name: string;
     price: number;
-    type: string;
+    detail: string;
     category?: Category;
 }
 
 class ProductService implements IService {
 
-    async create({ name, price, type, category }: IProduct) {
+    async create({ name, price, detail, category }: IProduct) {
         const productRepository = getCustomRepository(ProductRepository)
 
-        if (!name || !price || !type || !category) {
+        if (!name || !price || !detail || !category) {
             throw new Error("Por favor enviar todos los campos");
         }
-        const product = productRepository.create({ name, price, type });
+        const product = productRepository.create({ name, price, detail });
         product.category = category
 
         await productRepository.save(product);
@@ -74,20 +74,20 @@ class ProductService implements IService {
             .createQueryBuilder()
             .where("name like :search", { search: `%${search}%` })
             .orWhere("price like :search", { search: `%${search}%` })
-            .orWhere("type like :search", { search: `%${search}%` })
+            .orWhere("detail like :search", { search: `%${search}%` })
             .getMany();
 
         return product;
 
     }
 
-    async update({id, name, price, type, category }: IProduct) {
+    async update({id, name, price, detail, category }: IProduct) {
         const productRepository = getCustomRepository(ProductRepository)
 
         const product = await productRepository
             .createQueryBuilder()
             .update(Product)
-            .set({ name, price , type, category })
+            .set({ name, price , detail, category })
             .where("id = :id", { id })
             .execute();
 

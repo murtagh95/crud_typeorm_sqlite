@@ -105,6 +105,17 @@ class ProductController extends GenericController {
 
     }
 
+    async get_detail(request: Request, response: Response) {
+        let { id } = request.query;
+        id = id.toString();
+
+        const product = await this.service.getData(id);
+        
+        return response.render("Product/detail", {
+            product: product
+        });
+    }
+
 }
 
 export { ProductController };
