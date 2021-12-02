@@ -33,7 +33,7 @@ class HomeController{
             return product
         })
         
-        return response.render("base/home", {
+        return response.render("single_page/home", {
             products: new_products,
             categories: categories
         });

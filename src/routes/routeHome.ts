@@ -20,4 +20,9 @@ routerHome.get("/", (request, response) => {
     homeController.get(request, response)
 });
 
+// About
+routerHome.get("/about", (request, response) => {
+    return response.render("single_page/about");
+});
+
 export { routerHome };
