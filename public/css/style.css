@@ -727,6 +727,7 @@ section {
   top: calc(50% - 18px);
   color: #483b36;
   border: none;
+  background-color: transparent;
 
 }
 .portfolio .portfolio-item .portfolio-info .preview-link:hover, .portfolio .portfolio-item .portfolio-info .details-link:hover {
