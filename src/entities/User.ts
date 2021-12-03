@@ -1,6 +1,8 @@
-import { Column, Entity } from "typeorm";
+import { Column, Entity, OneToMany } from "typeorm";
 
+// Entities
 import { BaseEntity } from "./baseEntity";
+import { Appointments } from "./Appointments";
 
 @Entity("users")
 class User extends BaseEntity {
@@ -44,6 +46,9 @@ class User extends BaseEntity {
 
   @Column()
   is_admin: boolean;
+
+  @OneToMany(() => Appointments, appointments => appointments.user)
+  appointments: Appointments[];
 
   constructor() {
     super()
