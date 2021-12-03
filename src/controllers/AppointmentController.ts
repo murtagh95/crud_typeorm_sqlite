@@ -25,7 +25,9 @@ class AppointmentController extends GenericController {
     async create(request: Request, response: Response) {
         
         if (!request.body["detail"] || !request.body["user"] || !request.body["products"] || !request.body["date"] ) {
-            throw new Error("Por favor enviar todos los campos");
+            return response.render("Appointment/message", {
+                message: `Se deben cargar todos los campos del formulario`
+            });
         }
         
         // Busco el usuario
@@ -104,14 +106,11 @@ class AppointmentController extends GenericController {
 
     async get_today(request: Request, response: Response) {
         
-        const appointments = await this.service.list();
+        const appointments = await this.service.listByDate(new Date())
         const head: string = 'Nombre cliente, Productos, Fecha, Detalle, Precio total\n';
         let content: string = "";
         let product = "";
         let product_total = 0;
-
-        const app = await this.service.listByDate(new Date())
-        console.log(app)
 
         appointments.forEach(e => {  
             product = "";
@@ -125,7 +124,7 @@ class AppointmentController extends GenericController {
                     product += " - ";
                 }
             });
-            content += `${e.user.name || "Sin nombre"},${product},${e.date.toLocaleDateString()},${e.detail},${product_total}\n`;
+            content += `${e.user.name || "Sin nombre"},${product},${e.date.toLocaleDateString()} ${e.date.toLocaleTimeString()},${e.detail},${product_total}\n`;
         });
         
         
