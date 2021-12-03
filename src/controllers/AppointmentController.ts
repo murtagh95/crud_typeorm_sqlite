@@ -110,6 +110,9 @@ class AppointmentController extends GenericController {
         let product = "";
         let product_total = 0;
 
+        const app = await this.service.listByDate(new Date())
+        console.log(app)
+
         appointments.forEach(e => {  
             product = "";
             product_total = 0;
@@ -127,7 +130,7 @@ class AppointmentController extends GenericController {
         
         
         return response.json({
-            data: head + content
+            metadata: head + content
         })
     }
 

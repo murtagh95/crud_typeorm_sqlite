@@ -1,4 +1,4 @@
-import { getCustomRepository } from "typeorm";
+import { Between, getCustomRepository, LessThanOrEqual, Like, MoreThan, MoreThanOrEqual } from "typeorm";
 
 // Repository
 import { AppointmentRepository } from "../repositories/AppointmentRepository";
@@ -28,42 +28,55 @@ class AppointmentService implements IService {
         if (!detail || !user || !products || !date ) {
             throw new Error("Por favor enviar todos los campos");
         }
-        const category = appointmentRepository.create({ detail, user, products, date });
+        const appointment = appointmentRepository.create({ detail, user, products, date });
 
-        await appointmentRepository.save(category);
+        await appointmentRepository.save(appointment);
 
-        return category;
+        return appointment;
 
     }
 
     async delete(id: string) {
         const appointmentRepository = getCustomRepository(AppointmentRepository)
 
-        const category = await appointmentRepository
+        const appointment = await appointmentRepository
             .createQueryBuilder()
             .delete()
             .from(Appointment)
             .where("id = :id", { id })
             .execute();
 
-        return category;
+        return appointment;
 
     }
 
     async getData(id: string) {
         const appointmentRepository = getCustomRepository(AppointmentRepository)
 
-        const category = await appointmentRepository.findOne(id, { relations: ["user", "products"] });
+        const appointment = await appointmentRepository.findOne(id, { relations: ["user", "products"] });
 
-        return category;
+        return appointment;
     }
 
     async list() {
         const appointmentRepository = getCustomRepository(AppointmentRepository)
 
-        const category = await appointmentRepository.find({ relations: ["user", "products"] });
+        const appointment = await appointmentRepository.find({ relations: ["user", "products"] });
 
-        return category;
+        return appointment;
+    }
+
+    async listByDate(date: Date) {
+        const appointmentRepository = getCustomRepository(AppointmentRepository)
+
+        const appointment = await appointmentRepository.find({ 
+            relations: ["user", "products"],
+            where:{
+                date: Between(`${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`, `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate() + 1}`),
+            }
+        });
+        
+        return appointment;
     }
 
     async search(search: string){
@@ -72,27 +85,27 @@ class AppointmentService implements IService {
             throw new Error("Por favor complete el campo de búsqueda");
         }
 
-        const category = await appointmentRepository
+        const appointment = await appointmentRepository
             .createQueryBuilder()
             .where("detail like :search", { search: `%${search}%` })
             .orWhere("id like :search", { search: `%${search}%` })
             .getMany();
 
-        return category;
+        return appointment;
 
     }
 
     async update({id, detail, user, products, date }: IAppointment) {
         const appointmentRepository = getCustomRepository(AppointmentRepository)
 
-        const category = await appointmentRepository
+        const appointment = await appointmentRepository
             .createQueryBuilder()
             .update(Appointment)
             .set({ detail, user, products, date  })
             .where("id = :id", { id })
             .execute();
 
-        return category;
+        return appointment;
 
     }
 }
