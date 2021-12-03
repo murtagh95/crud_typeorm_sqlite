@@ -102,6 +102,35 @@ class AppointmentController extends GenericController {
         });
     }
 
+    async get_today(request: Request, response: Response) {
+        
+        const appointments = await this.service.list();
+        const head: string = 'Nombre cliente, Productos, Fecha, Detalle, Precio total\n';
+        let content: string = "";
+        let product = "";
+        let product_total = 0;
+
+        appointments.forEach(e => {  
+            product = "";
+            product_total = 0;
+
+            e.products.forEach((element, i) => {
+                product += `${element.name}`;
+                product_total += element.price;
+
+                if(i !== e.products.length -1) {
+                    product += " - ";
+                }
+            });
+            content += `${e.user.name || "Sin nombre"},${product},${e.date.toLocaleDateString()},${e.detail},${product_total}\n`;
+        });
+        
+        
+        return response.json({
+            data: head + content
+        })
+    }
+
     // async update(request: Request, response: Response) {
     //     const data = this.get_data_request(request.body, this.data_update)
         

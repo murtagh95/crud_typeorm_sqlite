@@ -58,5 +58,10 @@ routerAppointment.post("/delete-appointment", helpers.isLoggedIn, (request, resp
   appointmentController.delete(request, response)
 });
 
+routerAppointment.get("/get-today-appointment", helpers.isLoggedIn, (request, response) => {
+  appointmentController.get_today(request, response)
+});
+
+
 
 export { routerAppointment };
