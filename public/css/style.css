@@ -28,6 +28,18 @@ table {
     padding: 30px;
 }
 
+
+.edit-btn {
+  background-color: yellow;
+  color: #000;
+}
+
+.delete-btn {
+  background-color: #f72828;
+  color: #000;
+}
+
+
 /**
 * Template Name: Flattern - v4.7.0
 * Template URL: https://bootstrapmade.com/flattern-multipurpose-bootstrap-template/
