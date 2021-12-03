@@ -5,9 +5,9 @@ import { Product } from "./Product";
 import { User } from "./User";
 
 @Entity("appointments")
-class Appointments extends BaseEntity {
+class Appointment extends BaseEntity {
 
-  @ManyToOne(() => User, user => user.appointments)
+  @ManyToOne(() => User, user => user.appointment)
   @JoinColumn({name: "user_fk_id"})
   user: User;
 
@@ -31,4 +31,4 @@ class Appointments extends BaseEntity {
 
 }
 
-export { Appointments };
+export { Appointment };
