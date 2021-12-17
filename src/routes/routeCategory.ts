@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { FactoryController } from "../controllers/FactoryController";
+import { GenericController } from "../controllers/GenericController";
 
 // Service
 import { CategoryService } from "../services/CategoryService";
@@ -10,7 +10,7 @@ import { helpers } from "../lib/auth"
 
 const routerCategory = Router();
 
-const categoryController = FactoryController.generateController(
+const categoryController = new GenericController(
   ["name"],
   ["id", "name"],
   "Category",

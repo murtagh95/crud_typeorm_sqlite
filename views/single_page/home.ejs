@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <%- include('../base/head'); %>
+  <link href="public/vendor/glightbox/css/glightbox.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+  <%- include('../base/top_bar'); %>
+  <%- include('../base/navegation', {variant:'-user'}); %>
+
+  <%- include('../base/hero'); %>
+
+  <main class="main">
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-10 text-center text-lg-left">
+            <h3>Nuestro equipo de profesionales se destacó por realizar más de <span>50 eventos</span> el último año  !</h3>
+            <p> Uno de nuestros tantos servicios es el de brindar todo lo necesario para que tu cabello se luzca al máximo en un día especial (casamientos, 15, fiesta de egresados, etc). Contamos con un excelente asesor que te puede brindar consejos y realizar una cotización completamente gratis.</p>
+          </div>
+          <div class="col-lg-2 cta-btn-container text-center">
+            <a class="cta-btn align-middle" href="#">Solicita una cotización</a>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Cta Section -->
+
+ <!-- ======= Services Section ======= -->
+ <section id="services" class="services">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <div class="icon-box" data-aos="fade-up">
+          <div class="icon"><i class="bi bi-briefcase"></i></div>
+          <h4 class="title">Compromiso</h4>
+          <p class="description">Trabajamos todos los días para brindar un espacio comodo y acojedor a nuestros clientes.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+          <div class="icon"><i class="bi bi-card-checklist"></i></div>
+          <h4 class="title">Encuestas</h4>
+          <p class="description">Realizamos de manera periodica y al azar encuestas de satifacción.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon"><i class="bi bi-bar-chart"></i></div>
+          <h4 class="title">Buenas estadisticas</h4>
+          <p class="description">El 95% de nuestros clientes afirman estar conformes con nuestro servicio y lo recomiendan.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon"><i class="bi bi-binoculars"></i></div>
+          <h4 class="title">Busquamos las mejores técnicas</h4>
+          <p class="description">Parte de nuestro compromiso es buscar y aprender las mejores técnicas sobre tratamiento capilar.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+          <div class="icon"><i class="bi bi-brightness-high"></i></div>
+          <h4 class="title">Mejora notable</h4>
+          <p class="description">Nos expresamos con nuestro cabello, incluso sin quererlo. Y nos escargamos de que tu cabello se luzca.</p>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+          <div class="icon"><i class="bi bi-calendar4-week"></i></div>
+          <h4 class="title">Cumplimiento en horarios</h4>
+          <p class="description">Manejamos una estricta y controlada agenda que nos permite asegurar la mejorar atención, con tiempos minimos de espera.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section><!-- End Services Section -->
+
+<!-- ======= Portfolio Section ======= -->
+<section id="portfolio" class="portfolio">
+  <div class="container">
+
+    <div class="row" data-aos="fade-up">
+      <div class="col-lg-12 d-flex justify-content-center">
+        <ul id="portfolio-flters">
+          <li data-filter="*" class="filter-active">Todos</li>
+          <% categories.forEach(function(category) { %>
+            
+            <li data-filter=".filter-<%= category.name %>"><%= category.name %></li>
+
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row portfolio-container" data-aos="fade-up">
+      <% products.forEach(function(product) { %>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-<%= product.category.name %>">        
+            <img src="<%= product.link_img %>" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4><%= product.name %></h4>
+              <p>$ <%= product.price %></p>
+              <a href="<%= product.link_img %>" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="<%= product.name %>"><i class="bi bi-plus"></i></a>
+              <form action="./product-detail" method="GET">
+                <input type="hidden" name="id" value="<%= product.id %>">
+                <button type="submit" class="details-link" title="More Details">
+                  <i class="bi bi-link"></i>
+                </button>
+              </form>
+
+            </div>
+          </div>
+            
+      <% }) %>
+
+      
+
+    </div>
+
+  </div>
+</section><!-- End Portfolio Section -->
+  </main><!-- End #main -->
+
+  <%- include('../base/footer'); %>
+
+  <!-- Vendor JS Files -->
+  <script src="public/vendor/aos/aos.js"></script>
+  <script src="public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="public/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="public/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  
+  <script src="public/js/single_script.js"></script>
+  
+
+</body>
+
+</html>

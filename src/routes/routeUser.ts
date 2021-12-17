@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 // Controller
-import { FactoryController } from "../controllers/FactoryController";
+import { UserController } from "../controllers/UserController";
 
 // Service
 import { UserService } from "../services/UserService";
@@ -12,17 +12,12 @@ import { helpers } from "../lib/auth"
 
 const routerUser = Router();
 
-const userController =FactoryController.generateController(
+const userController = new UserController(
   ["username", "email", "phone", "city", "state" ],
   ["id", "username", "email", "phone", "city", "state", "gender", "lastname", "name"],
   "User",
   new UserService()
 );
-
-// Home
-routerUser.get("/", (request, response) => {
-  response.render("base/home");
-});
 
 
 routerUser.get("/user", helpers.isLoggedIn, (request, response) => {

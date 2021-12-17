@@ -15,6 +15,8 @@ import { routerProduct } from "./routes/routeProduct";
 import { routerUser } from "./routes/routeUser";
 import { routerAuthentications } from "./routes/authentications";
 import { routerImageProduct } from "./routes/routeImageProduct";
+import { routerHome } from "./routes/routeHome";
+import { routerAppointment } from "./routes/routeAppointment";
 
 const app = express();
 
@@ -37,8 +39,10 @@ app.use((req, res, next) => {
   app.locals.message = req.flash('message');
   app.locals.success = req.flash('success');
 
-  app.locals.message1 = 'hola';
   app.locals.login_user = req.user;
+  app.locals.compani_phone = "261-2518971";
+  app.locals.compani_mail = "nec.catalano@gmail.com";
+  app.locals.compani_address = "Calle Siempre Viva 772";
   next();
 });
 
@@ -50,6 +54,8 @@ app.use(routerUser);
 app.use(routerProduct);
 app.use(routerAuthentications);
 app.use(routerImageProduct);
+app.use(routerHome);
+app.use(routerAppointment);
 
 // Config
 app.set('view engine', 'ejs');

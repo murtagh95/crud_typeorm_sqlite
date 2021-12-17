@@ -37,8 +37,11 @@ class ProductController extends GenericController {
 
         try {
             await this.service.create( data ).then((product) => {
-                if(request.file && product instanceof Product ){
-                    const image = this.imageProductService.create(request.file.filename, product)
+                if(request.files && product instanceof Product ){
+                    for (let i = 0; i < request.files.length; i++) {
+                        const file = request.files[i];
+                        const image = this.imageProductService.create(file.filename, product)    
+                    }
                 }
 
                 response.render("Product/message", {
@@ -80,14 +83,16 @@ class ProductController extends GenericController {
             data["category"].toString()
         );
         data["category"] = category
-        console.log(request.file)
+        
         try {
             await this.service.update( data ).then((product) => {
-                if(request.file && product instanceof Product ){
-                    console.log(product)
-                    const image = this.imageProductService.create(request.file.filename, product)
+                
+                if(request.files && product instanceof Product ){
+                    for (let i = 0; i < request.files.length; i++) {
+                        const file = request.files[i];
+                        const image = this.imageProductService.create(file.filename, product)    
+                    }                    
                 }
-
                 response.render("Product/message", {
                     message: "Producto actualizado con exito"
                 });
@@ -98,6 +103,17 @@ class ProductController extends GenericController {
             });
         }
 
+    }
+
+    async get_detail(request: Request, response: Response) {
+        let { id } = request.query;
+        id = id.toString();
+
+        const product = await this.service.getData(id);
+        
+        return response.render("Product/detail", {
+            product: product
+        });
     }
 
 }

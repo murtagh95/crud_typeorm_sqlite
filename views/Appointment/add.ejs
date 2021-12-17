@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <%- include('../base/head'); %>
+</head>
+
+<body>
+
+    <%- include('../base/navegation', {variant:'-category'}); %>
+
+    <br>
+    <div class="container container-box">
+        <div class="text-center">
+            <h2>Crear Turno</h2>
+        </div>
+        <br>
+        <form action="./add-appointment" method="POST">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <label for="user" class="form-label">Usuario</label>
+                    <select name="user" id="user" class="form-select">
+                    <option value="" selected disabled>Seleccione usuario</option>
+                    
+                    <% users.forEach(function(user) { %>
+                        <option value="<%= user.id %>">
+                            <%= user.username %>
+                        </option>
+                      <% }) %>
+                </select>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <label for="exampleFormControlSelect2">Elija uno o varios productos</label>
+                        <select multiple class="form-control" name="products" id="exampleFormControlSelect2">
+                        <% products.forEach(function(product) { %>
+                            <option value="<%= product.id %>">
+                                <%= product.name %>
+                            </option>
+                        <% }) %>
+                    </select>
+                    
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <label for="date" class="form-label">Fecha</label>
+                    <input type="datetime-local" name="date" id="date" step="3600" class="form-control">
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <label for="detail" class="form-label">Detalle</label>
+                    
+                    <textarea name="detail"  id="detail" class="form-control" rows="3" ></textarea>
+                    
+                </div>
+                
+            </div>
+
+            <% /* %>
+            <div class="d-flex gap-5 justify-content-center">
+                <div class="list-group mx-0">
+                    <% products.forEach(function(product) { %>
+                        
+                        <label class="list-group-item d-flex gap-2">
+                            <input class="form-check-input flex-shrink-0" type="checkbox" value="<%= product.id %>" >
+                            <span>
+                                <%= product.name %>
+                              <small class="d-block text-muted"><%= product.price %></small>
+                            </span>
+                          </label>
+                    <% }) %>
+                  
+                </div>
+                
+            </div>
+            <% */ %>
+
+            <div class="row mt-3">
+                <div class="col-6">
+                    <div class="float-start">
+                        <a href=".." class="btn btn-secondary">Volver al home</a>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="float-end">
+                        <button type="submit" class="btn btn-primary">Agregar Turno</button>
+                    </div>
+                </div>
+
+            </div>
+
+              
+        </form>
+    </div>
+    
+    <!-- Vendor JS Files -->
+    <script src="public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="public/js/main.js"></script>
+</body>
+
+</html>

@@ -82,6 +82,16 @@ class UserService implements IService {
 
         return user;
     }
+    
+    async getDataToType(isAdmin: boolean) {
+        const usersRepository = getCustomRepository(UsersRepository);
+
+        const user = await usersRepository.find(
+            { where: { is_admin: isAdmin } }
+        );
+
+        return user;
+    }
 
     async list() {
         const usersRepository = getCustomRepository(UsersRepository);

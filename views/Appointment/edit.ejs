@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <%- include('../base/head'); %>
+</head>
+
+<body>
+
+    <%- include('../base/navegation', {variant:'-category'}); %>
+    
+    <br>
+    <div class="container container-box">
+        <div class="text-center">
+            <h2>Info de Turno</h2>
+            
+        </div>
+        <br>
+        <form action="./edit-appointment" method="POST">
+            <input type="hidden" name="id" value="<%= register.id %>">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <label for="user" class="form-label">Usuario</label>
+                    <select name="user" id="user" class="form-select">
+                    <% if( register.user ){ %>
+                        <option value="<%= register.user.id %>" selected>
+                            <%= register.user.username %>
+                        </option>
+                    <% } else{ %>  
+                        <option value="" selected disabled>Seleccione usuario</option>
+                    <% } %>
+                    
+                    <% users.forEach(function(user) { %>
+                        <% if( register.user ){ %>
+                            <% if( register.user.id !== user.id ){ %>
+                                <option value="<%= user.id %>">
+                                    <%= user.name %>
+                                </option>>
+                            <% } %> 
+                        <% } else{ %>  
+                            <option value="<%= user.id %>">
+                                <%= user.name %>
+                            </option>>
+                        <% } %>
+                                            
+                    <% }) %>
+
+                </select>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <label for="exampleFormControlSelect2">Elija uno o varios productos</label>
+                        <select multiple class="form-control" name="products" id="exampleFormControlSelect2">
+                            <% if( register.products ){ %>
+                                <% register.products.forEach(function(product) { %>
+                                        <option value="<%= product.id %>" selected>
+                                            <%= product.name %>
+                                        </option>>                                                       
+                                <% }) %>
+                            <% } else{ %>  
+                                <option value="" selected disabled>Seleccione usuario</option>
+                            <% } %>
+                            
+                            <% products.forEach(function(product) { %>
+                                <% if( idProductsInAppointment ){ %>
+                                    <% if(  !idProductsInAppointment.includes(product.id) ){ %>
+                                        <option value="<%= product.id %>">
+                                            <%= product.name %>
+                                        </option>>
+                                    <% } %> 
+
+                                <% } else{ %> 
+                                    <option value="<%= product.id %>">
+                                        <%= product.name %>
+                                    </option>>
+                                <% } %>
+                                                    
+                            <% }) %>
+                        
+                    </select>
+                    
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <label for="date" class="form-label">Fecha</label>
+                    <% 
+                        let date = register.date.toISOString()
+                        date = date.substring(0, (date.indexOf('T')|0) + 6|0)
+                    %> 
+                    <input type="datetime-local" name="date" id="date" class="form-control" value="<%= date %>" >
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <label for="detail" class="form-label">Detalle</label>
+                    
+                    <textarea name="detail"  id="detail" class="form-control" rows="3" ><%= register.detail %></textarea>
+                    
+                </div>
+                
+            </div>
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="float-start">
+                        <button type="submit" class="btn btn-primary">Actualizar Turno</button>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="float-end">
+                        <a href=".." class="btn btn-secondary">Volver al home</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Vendor JS Files -->
+    <script src="public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="public/js/main.js"></script>
+</body>
+
+</html>

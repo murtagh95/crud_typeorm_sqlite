@@ -1,0 +1,38 @@
+
+.text-center {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.lightbox-gallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.button-img {
+    max-width: 100%;
+    display: block;
+    border: none;
+}
+
+.img-main{
+    border: 5px solid red;
+    border-radius: 10%;
+}
+
+.lightbox-gallery div {
+    margin: 10px;
+    flex-basis: 180px;
+}
+
+@media only screen and (max-width: 480px) {
+    .lightbox-gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+    .lightbox>div {
+        margin-bottom: 10px;
+    }
+}

@@ -9,14 +9,12 @@ class Product  extends BaseEntity{
   @Column()
   name: string;
 
+  @Column()
+  detail: string;
+
   @Column({ type: "double" })
   price: number;
 
-  @Column({
-    type: "varchar",
-    length: 1,
-  })
-  type: string;
 
   @ManyToOne(() => Category, category => category.product)
   @JoinColumn({name: "category_fk_id"})

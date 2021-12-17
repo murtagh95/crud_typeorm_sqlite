@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <%- include('../base/head'); %>
+</head>
+
+<body>
+
+  <%- include('../base/navegation', {variant:'-appointment'}); %>
+
+  <br>
+  <section class="container mt-5">
+    <div class="row container mt-5" width="100vw">
+
+      <% if(search){ %>
+        <div class="text-center">
+          <h2>Busca por "<%= search %>"</h2>
+        </div>
+        <% } else{ %>
+          <div class="text-center">
+            <h2>Tabla de Turnos</h2>
+          </div>
+          <% } %>
+  
+          <!-- Con table-responsive se crea un scroll en la tabla -->
+          <div class="table-responsive mt-3">
+            <table class="table table-striped">
+              <thead class="thead-dark">
+                <th scope="col">Usuario</th>
+                <th scope="col">Productos</th>
+                <th scope="col">Detalle</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Creado</th>
+                <th scope="col">Actualizado</th>
+                <th scope="col">Acciones</th>
+              </thead>
+              <tbody>
+  
+                <% registers.forEach(function(register) { %>
+                  <tr>
+                    <td>
+                      <%= register.user.username %>
+                    </td>
+                    <td>
+                      
+                      <% for(let i = 0 ; i < register.products.length ; i++)  { %>
+                        <%= register.products[i].name %>
+                        <% if(i !== register.products.length - 1)  { %>
+                          |
+                        <% } %>
+                      <% } %>
+
+                    </td>
+                    <td>
+                      <%= register.detail %>
+                    </td>
+                    <td>
+                      <%= register.date.toLocaleDateString() %>
+                      <%= register.date.toLocaleTimeString() %>
+                    </td>
+                    <td>
+                      <%= register.created_at.toLocaleDateString() %>
+                      <%= register.created_at.toLocaleTimeString() %>
+                    </td>
+                    <td>
+                      <%= register.updated_at.toLocaleDateString() %>
+                      <%= register.updated_at.toLocaleTimeString() %>
+                    </td>
+                    <td>
+                      <div class="row">
+                        <div class="row">
+                          <form action="./edit-appointment" method="GET">
+                            <input type="hidden" name="id" value="<%= register.id %>">
+                            <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
+                          </form>
+                        </div>
+                        <div class="row"></div>
+                        <div class="row">
+                          <form action="./delete-appointment" method="POST">
+                            <input type="hidden" name="id" value="<%= register.id %>">
+                            <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
+                          </form>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <% }) %>
+              </tbody>
+            </table>
+          </div>
+          <br>
+          <br>
+          
+          <div class="row mt-3">
+            <div class="col-6">
+                <div class="float-start">
+                  <a href="./add-appointment" class="btn btn-primary">Agregar Turno</a>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="float-end">
+                    <span class="btn btn-secondary" id="generate_scv">Generar scv</span>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Vendor JS Files -->
+  <script src="public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="public/js/main.js"></script>
+  <script src="public/js/scv_appointment.js"></script>
+  
+</body>
+
+</html>
