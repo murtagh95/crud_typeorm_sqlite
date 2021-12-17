@@ -21,6 +21,39 @@ class AppointmentController extends GenericController {
         super(data_create, data_update, type_controller, service)
     }
 
+    async generateData(body: object){
+        // Busco el usuario
+        const user = await this.userService.getData(
+            body["user"].toString()
+        );
+        
+        // Busco lo/s porductos 
+        let products: Product[] = [];
+        if(typeof(body["products"]) === "string"){
+            const product = await this.productService.getData(
+                body["products"].toString()
+            );
+            products.push(product);
+        }
+        else{
+            for (let i = 0; i < body["products"].length; i++) {
+                
+                const product = await this.productService.getData(
+                    body["products"][i].toString()
+                );
+                products.push(product);                    
+            }
+        }
+        
+        const data: IAppointment = {
+            detail: body["detail"].toString(),
+            products,
+            user,
+            date: new Date(body["date"])  // Paso el str de la fecha a un objeto
+        };
+
+        return data
+    }
 
     async create(request: Request, response: Response) {
         
@@ -30,35 +63,7 @@ class AppointmentController extends GenericController {
             });
         }
         
-        // Busco el usuario
-        const user = await this.userService.getData(
-            request.body["user"].toString()
-        );
-        
-        // Busco lo/s porductos 
-        let products: Product[] = [];
-        if(typeof(request.body["products"]) === "string"){
-            const product = await this.productService.getData(
-                request.body["products"].toString()
-            );
-            products.push(product);
-        }
-        else{
-            for (let i = 0; i < request.body["products"].length; i++) {
-                
-                const product = await this.productService.getData(
-                    request.body["products"][i].toString()
-                );
-                products.push(product);                    
-            }
-        }
-        
-        const new_data: IAppointment = {
-            detail: request.body["detail"].toString(),
-            products,
-            user,
-            date: new Date(request.body["date"])  // Paso el str de la fecha a un objeto
-        };
+        const new_data: IAppointment = await this.generateData(request.body)
 
         try {
             await this.service.create( new_data ).then(() => {
@@ -133,34 +138,30 @@ class AppointmentController extends GenericController {
         })
     }
 
-    // async update(request: Request, response: Response) {
-    //     const data = this.get_data_request(request.body, this.data_update)
+    async update(request: Request, response: Response) {
+        if (!request.body["id"] || !request.body["detail"] || !request.body["user"] || !request.body["products"] || !request.body["date"] ) {
+            return response.render("Appointment/message", {
+                message: `Se deben cargar todos los campos del formulario`
+            });
+        }
         
-    //     const category = await this.productService.getData(
-    //         data["category"].toString()
-    //     );
-    //     data["category"] = category
+        let new_data: IAppointment = await this.generateData(request.body)
+        new_data = {...new_data, id :request.body["id"]}
         
-    //     try {
-    //         await this.service.update( data ).then((product) => {
+        try {
+            await this.service.update( new_data ).then(() => {
                 
-    //             if(request.files && product instanceof Product ){
-    //                 for (let i = 0; i < request.files.length; i++) {
-    //                     const file = request.files[i];
-    //                     const image = this.imageProductService.create(file.filename, product)    
-    //                 }                    
-    //             }
-    //             response.render("Appointment/message", {
-    //                 message: "Producto actualizado con exito"
-    //             });
-    //         });
-    //     } catch (err) {
-    //         response.render("Appointment/message", {
-    //             message: `Error al actualizar Producto: ${err.message}`
-    //         });
-    //     }
+                response.render("Appointment/message", {
+                    message: "Producto actualizado con exito"
+                });
+            });
+        } catch (err) {
+            response.render("Appointment/message", {
+                message: `Error al actualizar Producto: ${err.message}`
+            });
+        }
 
-    // }
+    }
 
     async get_detail(request: Request, response: Response) {
         let { id } = request.query;

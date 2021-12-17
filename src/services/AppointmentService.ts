@@ -101,9 +101,20 @@ class AppointmentService implements IService {
         const appointment = await appointmentRepository
             .createQueryBuilder()
             .update(Appointment)
-            .set({ detail, user, products, date  })
+            .set({ detail, user, date  })
             .where("id = :id", { id })
             .execute();
+
+        const appoin = await this.getData(id);
+        const products_ids = products.map(e =>{
+            return e.id
+        })
+        
+        appoin.products = appoin.products.filter(product => {
+            return products_ids.includes(product.id)
+        })
+
+        await appointmentRepository.save(appoin);
 
         return appointment;
 
