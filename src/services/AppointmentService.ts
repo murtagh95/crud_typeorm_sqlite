@@ -106,13 +106,7 @@ class AppointmentService implements IService {
             .execute();
 
         const appoin = await this.getData(id);
-        const products_ids = products.map(e =>{
-            return e.id
-        })
-        
-        appoin.products = appoin.products.filter(product => {
-            return products_ids.includes(product.id)
-        })
+        appoin.products = products
 
         await appointmentRepository.save(appoin);
 
